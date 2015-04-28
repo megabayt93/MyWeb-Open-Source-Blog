@@ -1,0 +1,66 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<MyWebEntityLibrary.ArticlesEntity.ArticlesTable>
+
+@{
+    ViewBag.Title = "Makaleler";
+    Layout = "~/Views/topLayout.cshtml";
+}
+
+<script>
+    window.onload = function () {
+        $("#articlesli").addClass("active");
+    }
+</script>
+<div class="col-md-8">
+    @foreach (var item in Model)
+    {
+        <div class="renk girdi">
+            <h3 class="baslik"><a href="~/makaleler/@item.SeoTitle">@item.ArticleTitle</a></h3>
+            <ul class="girdiBilgi">
+                <li><i class="fa fa-calendar"></i>@item.Date</li>
+                <li><i class="fa fa-user"></i>@item.ArticleAuthor</li>
+
+            </ul>
+
+
+            <span class="girdiIcerik">
+                <span class="yazi_resim">
+                    <img src="~/Content/Images/@item.Image" alt="@item.SeoTitle" class="img-responsive img-rounded pull-left" />
+                    </span>
+                    @{string content = System.Text.RegularExpressions.Regex.Replace(item.ArticleContent, @"<(.|\n)*?>", string.Empty); }
+
+
+
+                    @try
+                    {
+                        @Html.Raw(content.Substring(0, 500));<a href="/makaleler/@item.SeoTitle">...Devamını oku</a>
+
+                    }
+                    catch (Exception)
+                    {
+
+                        @Html.Raw(content)<a href="/makaleler/@item.SeoTitle">...Devamını oku</a>
+                    }
+
+                </span>
+            <ul class="girdiBilgi">
+                @{string tag = item.ArticleTags;
+                string[] tagBreak = tag.Split(',');
+                }
+                <li>
+                    <i class="fa fa-tag"></i>@foreach (var tags in tagBreak)
+                    {
+                        <a href="~/etiketler/@tags.Trim().Replace(' ', '-')">@tags</a><text>,</text>
+                    }
+                </li>
+            </ul>
+        </div>
+    }
+
+    <div class="pagedList">
+        @Html.PagedListPager(Model, sayfa => Url.Action("Index", "Articles", new { sayfa }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+    </div>
+
+   
+</div>

@@ -1,0 +1,147 @@
+﻿@model MyWebEntityLibrary.ArticlesEntity.ArticlesTable
+@using PagedList;
+@using PagedList.Mvc;
+
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/adminLayout.cshtml";
+}
+
+
+<section class="content">
+    <div class="contentici">
+
+
+        <div class="tum">
+            <br />
+            @foreach (var item in (IPagedList<MyWebEntityLibrary.ArticlesEntity.ArticlesTable>)ViewData["setArticle"])
+            {
+
+                @Html.Hidden("Id", item.ArticleID)
+                <div class="yazi">
+                    <div class="tum_yazibasligi">
+                        <a href="">
+                            @item.ArticleTitle
+                        </a>
+                    </div>
+                    <div class="tum_duzen">
+                        <span class="kategorisi">
+                            @item.Date
+                        </span>
+                        <span class="kategorisi">
+                            @{if (item.PublishId == 1)
+                            {
+                                <text>Yayında</text>
+                            }
+                            else
+                            {
+                                <text>Taslak</text>
+                            }
+                            }
+                        </span>
+                        <span>
+                            <a href="/administrator/admArticles/updateArticle/@item.ArticleID">
+                                <img src="~/Content/Administrator/Images/duzenle.png" alt="">
+                            </a>
+                        </span>
+                        <span>
+                            <a href="/administrator/admarticles/deletearticle/@item.ArticleID">
+                                <img src="~/Content/Administrator/Images/sil.png" alt="">
+                            </a>
+                        </span>
+                    </div>
+                </div>
+
+            }
+
+            <div class="pagedList">
+                @Html.PagedListPager((IPagedList<MyWebEntityLibrary.ArticlesEntity.ArticlesTable>)ViewData["setArticle"], sayfa => Url.Action("Index", "AdmArticles", new { sayfa }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+            </div>
+
+         
+        </div>
+
+
+
+
+        @using (Html.BeginForm("ArticlesAdd", "AdmArticles", FormMethod.Post, new {enctype = "multipart/form-data", id = "form", @class = "ac-checkbox ac-checkmark yazi_form"}))
+        {
+            @Html.ValidationSummary(true)
+   
+
+            <div class="yazibaslik">
+                @Html.ValidationMessageFor(at => at.ArticleTitle)
+                @Html.TextBoxFor(at => at.ArticleTitle, new {placeholder = "Makale Başlığı"})
+            </div>
+            <br/>
+            <br/>
+            <div class="yazibaslik">
+                @Html.ValidationMessageFor(aa => aa.ArticleAuthor)
+                @Html.TextBoxFor(aa => aa.ArticleAuthor, new {@class = "articleTitle", placeholder = "Makale Yazarı"})
+            </div>
+            <br/><br/>
+            <div class="yazibaslik">
+                @Html.ValidationMessageFor(atg => atg.ArticleTags)
+                @Html.TextBoxFor(atg => atg.ArticleTags, new {@class = "articleTitle", placeholder = "Etiketler(virgül ile ayırınız)"})
+            </div>
+            <br/><br/>
+            <div class="yazibaslik">
+                @Html.TextArea("ArticleContent", "", new {@class = "articleTitle", placeholder = "İçerik", id = "editor1"})
+            </div>
+            <br/><br/>
+
+            <script type="text/javascript">
+                var editor = CKEDITOR.instances['editor1']
+                if (editor) {
+                    editor.destroy(true);
+                }
+                CKEDITOR.replace('editor1', {
+                    enterMode: CKEDITOR.ENTER_BR,
+                })
+                CKFinder.setupCKEditor(null, '@Url.Content("~/ckeditor/ckfinder/")')
+            </script>
+
+
+            <div class="onecikan">
+                <div class="resimekle">
+                    <div class="resimekleic">
+                        <label for="Image">
+                            <img src="~/Content/Administrator/Images/resimekle.jpg" alt="resimekle">
+                        </label>
+                        <input type="file" id="Image" name="Image" class="articleFile" accept="image/*" style="display: none;" />
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <br/>
+
+            <ul class="ac-custom kategorilerssss">
+
+                <li>
+                    @Html.CheckBox("chkPublish", false, new { name = "category", id = "kategori_1" })
+
+                    <b style="margin-left: 25px;">Yayına Al</b>
+
+                </li>
+
+
+            </ul>
+         
+            <button>Yayınla</button>
+            
+
+
+        }
+        <script src="~/Content/Administrator/scripts/onecikan_ekle.js"></script>
+    </div>
+
+</section>
+
+
+      

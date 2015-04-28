@@ -1,0 +1,135 @@
+﻿@model MyWebEntityLibrary.FilesEntity.FilesTable
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/adminLayout.cshtml";
+}
+<script>
+    window.onload = function () {
+        $("#bookLi").addClass("active");
+        $("#homeLi").removeClass("active");
+    }
+</script>
+<section class="content">
+    <div class="contentici">
+        <div class="tum">
+
+
+        
+                <br />
+                @foreach (var item in (IPagedList<MyWebEntityLibrary.FilesEntity.FilesTable>)ViewData["setFile"])
+                {
+                    @Html.Hidden("Id", item.FileID)
+                    <div class="yazi">
+                        <div class="tum_yazibasligi">
+                            <a href="">
+                                @item.FileTitle
+                            </a>
+                        </div>
+                        <div class="tum_duzen">
+                            <span class="kategorisi">
+                                @item.Date
+                            </span>
+                            <span class="kategorisi">
+                                @{if (item.PublishId == 1)
+                                {
+                                    <text>Yayında</text>
+                                }
+                                else
+                                {
+                                    <text>Taslak</text>
+                                }
+                                }
+                            </span>
+                            <span>
+                                <a href="/administrator/admfiles/updatefile/@item.FileID">
+                                    <img src="~/Content/Administrator/Images/duzenle.png" alt="">
+                                </a>
+                            </span>
+                            <span>
+                                <a href="/administrator/admfiles/deletefile/@item.FileID">
+                                    <img src="~/Content/Administrator/Images/sil.png" alt="">
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                }
+                <div class="pagedList">
+                    @Html.PagedListPager((IPagedList<MyWebEntityLibrary.FilesEntity.FilesTable>) ViewData["setFile"], sayfa => Url.Action("Index", "AdmFiles", new {sayfa}), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                </div>
+
+                <script src="~/Content/Administrator/scripts/onecikan_ekle.js"></script>
+            </div>
+           
+        
+
+
+
+
+
+        @using (Html.BeginForm("FilesAdd", "AdmFiles", FormMethod.Post, new { enctype = "multipart/form-data",@class = "ac-checkbox ac-checkmark yazi_form" }))
+        {
+            @Html.ValidationSummary(true)
+
+            <div class="yazibaslik">
+                @Html.ValidationMessageFor(ft => ft.FileTitle)
+                @Html.TextBoxFor(ft => ft.FileTitle, new { @class = "articleTitle", placeholder = "Dosya İsmi" })
+            </div>
+            <br /><br />
+            <div class="yazibaslik">
+                @Html.ValidationMessageFor(fa => fa.FileAuthor)
+                @Html.TextBoxFor(fa => fa.FileAuthor, new { @class = "articleTitle", placeholder = "Dosya Yazarı" })
+            </div>
+            <br /><br />
+            <div class="yazibaslik">
+                @Html.ValidationMessageFor(ftg => ftg.FileTags)
+                @Html.TextBoxFor(ftg => ftg.FileTags, new { @class = "articleTitle", placeholder = "Etiketler(virgül ile ayırınız)" })
+            </div>
+            <br /><br />
+            <div class="yazibaslik">
+                @Html.TextArea("FileContent", "", new { @class = "articleTitle", placeholder = "İçerik", id = "editor1" })
+            </div>
+            <br /><br />
+            <script type="text/javascript">
+                var editor = CKEDITOR.instances['editor1']
+                if (editor) {
+                    editor.destroy(true);
+                }
+                CKEDITOR.replace('editor1', {
+                    enterMode: CKEDITOR.ENTER_BR,
+                })
+                CKFinder.setupCKEditor(null, '@Url.Content("~/ckeditor/ckfinder/")')
+            </script>
+    <div class="onecikan">
+        <div class="resimekle">
+            <div class="resimekleic">
+                <label for="Image">
+                    <img src="~/Content/Administrator/Images/resimekle.jpg" alt="resimekle">
+                </label>
+                <input type="file" id="Image" name="Image" class="articleFile" accept="image/*" style="display: none;"/>
+
+            </div>
+        </div>
+
+    </div><br/><br/>
+    <input type="file" id="articleFile" name="FileStream" class="articleFile" accept="file/*" style="display:none;">
+    <label for="articleFile" class="fileChose" style="display: inline-block;">Dosya Seç</label><br/>
+            <ul class="ac-custom kategorilerssss">
+                <li>
+                    @Html.CheckBox("chkPublish", false, new { name = "category", id = "kategori_1" })
+                    <b style="margin-left: 25px;">Yayına Al</b>
+                </li>
+            </ul>
+          
+            <button>KAYDET</button>
+
+           
+        }
+
+     
+        <script src="~/Content/Administrator/scripts/onecikan_ekle.js"></script>
+    </div>
+
+
+</section>

@@ -1,0 +1,208 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+ul.sosyalJumb {
+	font-size: 18px;
+	line-height: 87px;
+}
+ul.sosyalJumb li {
+	display:inline-block;
+	margin: 0 15px;
+}
+ul.sosyalJumb li a:hover {
+	text-decoration:none;
+}
+
+.renk {
+	background: #eee;
+	border-radius: 2px;
+	box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+.renk.ara {
+	padding:0px;
+	height: 50px;
+}
+
+.ara .araButon {
+	width: 15%;
+	float:right;
+}
+
+.ara .araInput {
+	width:80%;
+	border:none;
+	font-family: "Open Sans";
+	font-size:12px !important;
+	padding-left: 15px;
+	color:#999;
+}
+.girdi {
+	padding:20px;
+	margin-bottom:20px;
+   
+}
+
+.girdi h3.baslik {
+	margin:0 !important;
+	padding:0 !important;
+	margin-bottom: 5px !important;
+}
+
+ul.girdiBilgi li {
+	display:inline-block;
+	padding-right:10px;
+}
+
+ul.girdiBilgi li i {
+	padding-right:5px;
+	color:#999;
+}
+.girdi span.girdiIcerik {
+	display:inline-block;
+	width:auto !important;
+  word-wrap:break-word;
+	line-height: 22px;
+	font-size: 15px;
+}
+@media (max-width:1024px){
+	.girdi span.girdiIcerik img{
+		width: 100% !important;
+		height: auto !important;
+		
+	}
+}
+.girdi span.girdiIcerik img {
+	margin-right: 15px;
+    
+	height:128px;
+    
+	width: 128px;
+}
+
+.kutu {
+	margin-bottom:20px;
+}
+
+.kutu.kat {
+	padding:20px;
+}
+.kutu.kat h3.baslik i{
+	margin-right:10px;
+	position: relative;
+	top: 2px;
+}
+.kutu.kat h3.baslik i:before{
+	  content: "\f02c";
+	  font-size: 18px;
+}
+ul.sosyalJumb .fa{
+	color:#666;
+}
+ul.sosyalJumb .fa:hover{
+	color:rgba(0,0,0,0.4);
+}
+.kutu.kat h3.baslik {
+	padding:0;
+	margin:0;
+	color:#666;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #D2D2D2;
+	margin-bottom: 15px;
+	/* float: left; */
+	/* width: 100%; */
+	/* line-height: 6px; */
+}
+.kutu.kat ul li {
+	margin-bottom: 10px;
+	font-size:18px;
+}
+.kutu.kat ul li a:hover {
+	text-decoration:none;
+}
+.kutu.kat ul li a:before {
+	font-family: "FontAwesome";
+	/* content:"\f0da"; */
+	margin-right: 10px;
+	content: "\f105";
+}
+.renk.alt {
+	padding: 15px;
+}
+
+.tanit {
+	padding:10px;
+}
+
+.girdiIcerik .etiket:before {
+	font-family: "FontAwesome";
+	content:"\f02c";
+	margin-right:5px;
+}
+
+hr {
+	border:none;
+	border-bottom:1px dashed #c0c0c0 !important;
+}
+
+.renkyorum {
+	padding:10px;
+	margin-bottom:10px;
+    margin-top:5px;
+}
+.yorum p {
+	margin:0;
+}
+.yorum .yazar {
+	font-weight:bold;
+}
+.yorum .yazar:before {
+	font-family: "FontAwesome";
+	content:"\f007";
+	margin-right:5px;
+}
+.yorum .zaman {
+	font-size:12px;
+	float:right;
+}
+.yorum .zaman:after {
+	font-family: "FontAwesome";
+	content:"\f073";
+	margin-left:5px;
+}
+.yorum img {
+	margin-right:5px;
+}
+.yorum p:after {
+	clear:both;
+	content:' ';
+	display:block;
+}
+.renk.yorum.sahip {
+	background-color:#c9dced;
+}
+.yorumyaz {
+	padding:20px 20px 5px;
+	margin-bottom:20px;
+}
+
+@media (max-width: 767px) {
+	.sosyol {
+		float:none !important;
+		text-align:center;
+	}
+	.sosyol .pull-right{
+		float:none !important;
+	}
+}
+@media (min-width: 1200px) {
+	.tanit {
+		padding: 15px 15px 0 0;
+	}
+}

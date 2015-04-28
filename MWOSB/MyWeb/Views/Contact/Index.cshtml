@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "İletişim";
+    Layout = "~/Views/topLayout.cshtml";
+}
+<script>
+    window.onload = function () {
+        $("#contactli").addClass("active");
+    }
+</script>
+<div class="col-md-8">
+
+
+    <div class="renk girdi">
+
+
+
+        <div class="girdiIcerik">
+            <text style="font-size:25px;">@Html.Raw(Model.ContactInformation)</text><br />
+
+            @using (Ajax.BeginForm("SendMessage", "Contact", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "sendDiv" }))
+            {
+
+                <h2>Mesaj Gönder</h2><br />
+                <input type="text" placeholder="Ad Soyad" class="form-control" name="nameSurname" /><br />
+                <input type="email" placeholder="e-Mail" class="form-control" name="mail" /><br />
+                <textarea class="form-control" placeholder="İçerik" name="content"></textarea><br />
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Mesaj Gönder</button>
+                </div>
+            }
+            <div id="sendDiv"></div>
+            <br /><br /><br /><br />
+            <b>POWERED BY FATIH YAZICI</b><br>
+            <img src="~/Content/Images/Metro-icon.png" />
+            <img src="~/Content/Images/csharp logo.png" />
+            <img src="~/Content/Images/mvc-logo-landing-page.png" />
+            <img src="~/Content/Images/Entity-Framework-Logo.png" />
+            <img src="~/Content/Images/sql_server.jpg" />
+        </div>
+
+    </div>
+
+</div>

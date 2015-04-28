@@ -1,0 +1,201 @@
+﻿@{
+    ViewBag.Title = "Fatih YAZICI";
+    Layout = "~/Views/topLayout.cshtml";
+
+}
+<script>
+    window.onload = function () {
+        $("#homeli").addClass("active");
+    }
+</script>
+<div class="col-md-8">
+
+    @foreach (var item in (IEnumerable<MyWebEntityLibrary.ArticlesEntity.ArticlesTable>)ViewData["setArticle"])
+    {
+        <div class="renk girdi">
+            <h3 class="baslik"><a href="~/makaleler/@item.SeoTitle">@item.ArticleTitle</a></h3>
+            <ul class="girdiBilgi">
+                <li><i class="fa fa-calendar"></i>@item.Date</li>
+                <li><i class="fa fa-user"></i>@item.ArticleAuthor</li>
+
+            </ul>
+
+
+            <span class="girdiIcerik">
+                <span class="yazi_resim">
+                    <img src="~/Content/Images/@item.Image" alt="@item.SeoTitle" class="img-responsive img-rounded pull-left" />
+                </span>
+                @{string content = System.Text.RegularExpressions.Regex.Replace(item.ArticleContent, @"<(.|\n)*?>", string.Empty); }
+
+
+
+                @try
+                {
+                    @Html.Raw(content.Substring(0, 500));<a href="/makaleler/@item.SeoTitle">...Devamını oku</a>
+
+                }
+                catch (Exception)
+                {
+
+                    @Html.Raw(content)<a href="/makaleler/@item.SeoTitle">Devamını oku...</a>
+                }
+
+            </span>
+            <ul class="girdiBilgi">
+                @{string tag = item.ArticleTags;
+                string[] tagBreak = tag.Split(',');
+                }
+                <li>
+                    <i class="fa fa-tag"></i>@foreach (var tags in tagBreak)
+                    {
+                        <a href="~/etiketler/@tags.Trim().Replace(' ', '-')">@tags</a><text>,</text>
+                    }
+                </li>
+            </ul>
+        </div>
+    }
+
+
+    @foreach (var item in (IEnumerable<MyWebEntityLibrary.FilesEntity.FilesTable>)ViewData["setFile"])
+    {
+        <div class="renk girdi">
+            <h3 class="baslik"><a href="~/dosyalar/@item.SeoTitle">@item.FileTitle</a></h3>
+            <ul class="girdiBilgi">
+                <li><i class="fa fa-calendar"></i>@item.Date</li>
+                <li><i class="fa fa-user"></i>@item.FileAuthor</li>
+
+            </ul>
+
+
+            <span class="girdiIcerik">
+                <span class="yazi_resim">
+                    <img src="~/Content/Images/@item.FileImage" alt="@item.SeoTitle" class="img-responsive img-rounded pull-left" />
+                </span>
+                @{string content = System.Text.RegularExpressions.Regex.Replace(item.FileContent, @"<(.|\n)*?>", string.Empty); }
+
+
+
+                @try
+                {
+                    @Html.Raw(content.Substring(0, 500));<a href="~/dosyalar/@item.SeoTitle">...Devamını oku</a>
+
+                }
+                catch (Exception)
+                {
+
+                    @Html.Raw(content)<a href="~/dosyalar/@item.SeoTitle">...Devamını oku</a>
+                }
+
+            </span>
+            <ul class="girdiBilgi">
+                @{string tag = item.FileTags;
+                string[] tagBreak = tag.Split(',');
+                }
+                <li>
+                    <i class="fa fa-tag"></i>@foreach (var tags in tagBreak)
+                    {
+                        <a href="~/etiketler/@tags.Trim().Replace(' ', '-')">@tags</a><text>,</text>
+                    }
+                </li>
+            </ul>
+        </div>
+    }
+
+
+
+    @foreach (var item in (IEnumerable<MyWebEntityLibrary.WhatIDoEntity.WhatIDoTable>)ViewData["setWhatIDo"])
+    {
+        <div class="renk girdi">
+            <h3 class="baslik"><a href="~/neler-yapiyorum/@item.SeoTitle">@item.WhatIDoTitle</a></h3>
+            <ul class="girdiBilgi">
+                <li><i class="fa fa-calendar"></i>@item.Date</li>
+
+
+            </ul>
+
+
+            <span class="girdiIcerik">
+                <span class="yazi_resim">
+                    <img src="~/Content/Images/@item.WhatIDoImage" alt="@item.SeoTitle" class="img-responsive img-rounded pull-left" />
+                </span>
+                @{string content = System.Text.RegularExpressions.Regex.Replace(item.WhatIDoContent, @"<(.|\n)*?>", string.Empty); }
+
+
+
+                @try
+                {
+                    @Html.Raw(content.Substring(0, 500));<a href="/neler-yapiyorum/@item.SeoTitle">...Devamını oku</a>
+
+                }
+                catch (Exception)
+                {
+
+                    @Html.Raw(content)<a href="/neler-yapiyorum/@item.SeoTitle">...Devamını oku</a>
+                }
+
+            </span>
+            <ul class="girdiBilgi">
+                @{string tag = item.WhatIDoTags;
+                string[] tagBreak = tag.Split(',');
+                }
+                <li>
+                    <i class="fa fa-tag"></i>@foreach (var tags in tagBreak)
+                    {
+                        <a href="~/etiketler/@tags.Trim().Replace(' ', '-')">@tags</a><text>,</text>
+                    }
+                </li>
+            </ul>
+        </div>
+    }
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,120 @@
+﻿@model MyWebEntityLibrary.WhatIDoEntity.WhatIDoTable
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/adminLayout.cshtml";
+}
+<script>
+    window.onload = function () {
+        $("#whatIDoLi").addClass("active");
+        $("#homeLi").removeClass("active");
+    }
+</script>
+<section class="content">
+    <div class="contentici">
+        <div class="tum">
+
+            <br />
+
+            @foreach (var item in (IPagedList<MyWebEntityLibrary.WhatIDoEntity.WhatIDoTable>)ViewData["setWhatIDo"])
+            {
+                @Html.Hidden("Id", item.WhatIDoID)
+                <div class="yazi">
+                    <div class="tum_yazibasligi">
+                        <a href="">
+                            @item.WhatIDoTitle
+                        </a>
+                    </div>
+                    <div class="tum_duzen">
+                        <span class="kategorisi">
+                            @item.Date
+                        </span>
+                        <span class="kategorisi">
+                            @{if (item.PublishId == 1)
+                            {
+                                <text>Yayında</text>
+                            }
+                            else
+                            {
+                                <text>Taslak</text>
+                            }
+                            }
+                        </span>
+                        <span>
+                            <a href="/administrator/admwhatido/UpdateWhatIdo/@item.WhatIDoID">
+                                <img src="~/Content/Administrator/Images/duzenle.png" alt="">
+                            </a>
+                        </span>
+                        <span>
+                            <a href="/administrator/admwhatido/DeleteWhatIDo/@item.WhatIDoID">
+                                <img src="~/Content/Administrator/Images/sil.png" alt="">
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            }
+            <div class="pagedList">
+                @Html.PagedListPager((IPagedList<MyWebEntityLibrary.WhatIDoEntity.WhatIDoTable>)ViewData["setWhatIDo"], sayfa => Url.Action("Index", "AdmWhatIDo", new { sayfa }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+            </div>
+        </div>
+
+
+
+
+
+        @using (Html.BeginForm("WhatIDoAdd", "AdmWhatIDo", FormMethod.Post, new { enctype = "multipart/form-data", @class = "ac-checkbox ac-checkmark yazi_form" }))
+        {
+            @Html.ValidationSummary(true)
+            <div class="yazibaslik">
+                @Html.ValidationMessageFor(widt => widt.WhatIDoTitle)
+                @Html.TextBoxFor(widt => widt.WhatIDoTitle, new { @class = "articleTitle", placeholder = "Yapılan İş Başığı" })
+            </div>
+            <br /><br />
+            <div class="yazibaslik">
+                @Html.ValidationMessageFor(widtg => widtg.WhatIDoTags)
+                @Html.TextBoxFor(widtg => widtg.WhatIDoTags, new { @class = "articleTitle", placeholder = "Etiketler(virgül ile ayırınız)" })
+            </div>
+            <br /><br />
+            <div class="yazibaslik">
+                @Html.TextArea("WhatIDoContent", "", new { @class = "articleTitle", placeholder = "İçerik", id = "editor1" })
+                <br /><br />
+            </div>
+            <script type="text/javascript">
+                var editor = CKEDITOR.instances['editor1']
+                if (editor) {
+                    editor.destroy(true);
+                }
+                CKEDITOR.replace('editor1', {
+                    enterMode: CKEDITOR.ENTER_BR,
+                })
+                CKFinder.setupCKEditor(null, '@Url.Content("~/ckeditor/ckfinder/")')
+            </script>
+            <div class="onecikan">
+                <div class="resimekle">
+                    <div class="resimekleic">
+                        <label for="Image">
+                            <img src="~/Content/Administrator/Images/resimekle.jpg" alt="resimekle">
+                        </label>
+                        <input type="file" id="Image" name="Image" class="articleFile" accept="image/*" style="display: none;" />
+
+                    </div>
+                </div>
+            </div>
+            <br /><br />
+            <ul class="ac-custom kategorilerssss">
+                <li>
+                    @Html.CheckBox("chkPublish", false, new { name = "category", id = "kategori_1" })
+                    <b style="margin-left: 25px;">Yayına Al</b>
+                </li>
+            </ul>
+
+            <button>KAYDET</button>
+
+
+        }
+
+        <script src="~/Content/Administrator/scripts/onecikan_ekle.js"></script>
+
+    </div>
+</section> 

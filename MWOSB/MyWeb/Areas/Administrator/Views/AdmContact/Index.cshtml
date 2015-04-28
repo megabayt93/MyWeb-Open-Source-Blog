@@ -1,0 +1,103 @@
+﻿@model MyWebEntityLibrary.ContactsEntity.ContactsTable
+@using Microsoft.Ajax.Utilities
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/adminLayout.cshtml";
+}
+<script>
+    window.onload = function () {
+        $("#contactLi").addClass("active");
+        $("#homeLi").removeClass("active");
+    }
+</script>
+<section class="content">
+    <div class="contentici">
+        <div class="tum">
+            @using (Html.BeginForm("ContactAdd", "AdmContact", FormMethod.Post, new { enctype = "multipart/form-data", @class = "ac-checkbox ac-checkmark yazi_form" }))
+            {
+                <b>İletişim Bilgilerinizi Editör İçerisine Yazın</b>
+
+                <br /><br />
+                @Html.TextAreaFor(cip => cip.ContactInformation, new { @class = "articleTitle", placeholder = "İçerik", id = "editor1" })
+                <br /><br />
+                <script type="text/javascript">
+                    var editor = CKEDITOR.instances['editor1']
+                    if (editor) {
+                        editor.destroy(true);
+                    }
+                    CKEDITOR.replace('editor1', {
+                        enterMode: CKEDITOR.ENTER_BR,
+                    })
+                    CKFinder.setupCKEditor(null, '@Url.Content("~/ckeditor/ckfinder/")')
+                </script>
+
+                <button>KAYDET</button>
+
+                <br />
+
+
+
+
+            }
+
+
+
+
+            @if (ViewData["setData"]!=null)
+            {
+                <div style="float: left; margin-top: 15px;">
+
+                    @foreach (var item in (IEnumerable<MyWebEntityLibrary.MessageEntity.MessagesTable>)ViewData["setData"])
+                    {
+
+
+                        <div class="yazi">
+
+                            @Html.Hidden("Id", item.MessageId)
+
+
+                            <div class="tum_duzen f100">
+                                <span class="kategorisi">
+                                    <b>Mesajı Gönderen : @item.NameSurname</b>
+                                </span>
+                                <span class="kategorisi">
+                                    <b>Mail : @item.Mail</b>
+                                </span>
+                                <span class="kategorisi">
+                                    <b>Tarih : @item.Date</b>
+                                </span>
+                                <span class="kategorisi" style="height: 80px; overflow: auto; width: 98%;">
+                                    <b>
+                                        Mesaj İçeriği : @Html.Raw(item.Message)
+                                    </b>
+                                </span>
+                                <span>
+                                    <a href="/Administrator/AdmContact/DeleteMessage/@item.MessageId">
+                                        <img src="~/Content/Administrator/Images/sil.png" alt="">
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+
+                    }
+
+                    <div class="pagedList">
+                        @Html.PagedListPager((IPagedList<MyWebEntityLibrary.MessageEntity.MessagesTable>)ViewData["setData"], sayfa => Url.Action("Index", "AdmArticles", new { sayfa }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                    </div>
+                </div>
+            }
+            else
+            {
+                <br /><br />
+                <div style="  float: left; margin-top: 10px;"><b>Mesaj Yok! Ön Kısımda Gönderilen Mesajlar Aşağıda Sıralanmaktadır.</b></div>
+                <br />
+
+            }
+        </div>
+
+    </div>
+
+
+</section>

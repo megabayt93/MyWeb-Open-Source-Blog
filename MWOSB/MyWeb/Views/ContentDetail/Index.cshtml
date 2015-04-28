@@ -1,0 +1,130 @@
+﻿@{
+    if (Model != null)
+    {
+        ViewBag.Title = @Model.ArticleTitle;
+    }
+    else
+    {
+        ViewBag.Title = "Hata!";
+
+    }
+
+    Layout = "~/Views/topLayout.cshtml";
+}
+<script>
+    window.onload = function () {
+        $("#homeli").removeClass("active");
+        $("#articlesli").removeClass("active");
+        $("#filesli").removeClass("active");
+        $("#contactli").removeClass("active");
+        $("#whatidoli").removeClass("active");
+    }
+</script>
+<body>
+
+
+
+    <div class="col-md-8">
+
+        @{
+            if (Model != null)
+            {
+                <div class="renk girdi">
+                    <h3 class="baslik">@Model.ArticleTitle</h3>
+                    <ul class="girdiBilgi">
+                        <li><i class="fa fa-calendar"></i>@Model.Date</li>
+                        <li><i class="fa fa-user"></i>@Model.ArticleAuthor</li>
+
+                    </ul>
+
+                    <span class="girdiIcerik">
+                        <img src="~/Content/Images/@Model.Image" alt="@Model.ArticleTitle" id="contentImg" class="img-responsive pull-left" />
+                        <p>
+                            @Html.Raw(Model.ArticleContent)
+                        </p>
+                        <hr />
+                        <span class="etiket">
+
+                            @{string tag = Model.ArticleTags;
+                            string[] tagBreak = tag.Split(',');
+                            }
+
+                            @foreach (var tags in tagBreak)
+                            {
+                                <a href="~/etiketler/@tags.Trim().Replace(' ', '-')">@tags</a><text>,</text>
+                            }
+
+                        </span>
+                    </span>
+
+                </div>
+
+                <div class="renk yorumyaz">
+                    @using (Html.BeginForm("CommentAdd", "ContentDetail",FormMethod.Post))
+                    {
+
+                        <div class="form-group">
+                            <label for="isim">Ad Soyad</label>
+                            @Html.TextBox("NameSurname", "", new { @class = "form-control" })
+
+                        </div>
+                        <div class="form-group">
+                            <label for="mail">Mail</label>
+                            @Html.TextBox("Mail", "", new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label for="yorum">Yorum</label>
+                            @Html.TextArea("Comment", "", new { @class = "form-control" })
+
+                            @{int id = Model.ArticleID; string uri = Request.AppRelativeCurrentExecutionFilePath; string title = @Model.ArticleTitle;}
+                            @Html.Hidden("ContentId", id)
+                            @Html.Hidden("CommentArea", "Makaleler")
+                            @Html.Hidden("ContentTitle", title)
+                            @Html.Hidden("uri", uri)
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Yorumu Gönder</button>
+                        </div>
+
+                    }
+                </div>
+                foreach (var item in (IEnumerable<MyWebEntityLibrary.CommentsEntity.CommentsTable>)ViewData["setComment"])
+                {
+                    <div class="renk yorum">
+                        <img src="~/Content/Images/comment-icon.png" width="80" height="80" alt="@item.NameSurname" class="pull-left" />
+                        <span class="yazar">@item.NameSurname</span>
+                        <span class="zaman">@item.Date</span>
+                        <p>@item.Comment</p>
+                    </div>
+                    <br />
+                }
+            }
+            else
+            {
+
+                <div style=" ">
+
+                    <div class="renk girdi">
+                        <center><b style="font-size:36px;">404 NOT FOUND</b></center><br /><br />
+                        <center><b style="font-size:20px;">HATA! ULAŞMAYA ÇALIŞTIĞINIZ SAYFA BULUNAMADI!</b></center>
+                    </div>
+
+                </div>
+            }
+        }
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+</body>

@@ -1,0 +1,95 @@
+.container{
+	width: 100%;
+	max-width: 1240px;
+	margin:0 auto;
+	padding:0 15px;
+}
+.row{
+	margin:0 -15px;
+}
+html,body{
+	height: 100% !important;
+}
+body{
+	background: #3b4557;
+}
+.container410{
+	width: 100%;
+	max-width: 380px;
+	margin:0 auto;
+	padding:0 15px;
+}
+.girisyap{
+	width: 100%;
+	float: left;
+	position: relative;
+}
+.logo{
+	width: 100%;
+	float: left;
+	text-align: center;
+	background: #2c3e50;
+	padding-top: 20px;
+}
+.logo img{
+	padding-left:30px;
+}
+.inputlar{
+	width: 100%;
+	float: left;
+	padding:15px 30px;
+	background: #273747;
+}
+.girisyap form button{
+	width: 100%;
+	float: left;
+	height: 75px;
+	background: #2c3e50;
+	border:none;
+    font-family: 'RR';
+    font-size: 14px;
+	color: #FFFFFF;
+}
+.girisyap form button:hover,.girisyap form input:hover,.girisyap form input:hover{
+	background: #3A4B5B;
+}
+.inputlar div{
+	width: 100%;
+	float: left;
+	height: 95px;
+	padding:15px 0;
+	position: relative;
+}
+.inputlar div input{
+	background: #2C3E50;
+	width: 100%;
+	float: left;
+	border:none;
+	border-radius: 2px;
+	height: 100%;
+	padding:0 20px;
+    font-family: 'RR';
+    
+	color: #FFFFFF;
+    font-size: 14px;
+}
+.inputlar div input::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #fff;
+}
+.inputlar div input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #fff;
+   opacity:  1;
+}
+.inputlar div input::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #fff;
+   opacity:  1;
+}
+.inputlar div input:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    #fff;
+}
+.inputlar div label{
+	position: absolute;
+	top: 50%;
+	margin-top: -11px;
+	padding:0 20px;
+}

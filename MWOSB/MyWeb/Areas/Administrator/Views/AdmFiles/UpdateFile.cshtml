@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "UpdateFiles";
+    Layout = "~/Areas/Administrator/Views/adminLayout.cshtml";
+}
+
+@{
+    System.Data.Entity.Infrastructure.DbQuery<MyWebEntityLibrary.FilesEntity.FilesTable> updateCollec = (System.Data.Entity.Infrastructure.DbQuery<MyWebEntityLibrary.FilesEntity.FilesTable>)ViewBag.Update;
+
+
+}
+<script>
+    window.onload = function () {
+        $("#bookLi").addClass("active");
+        $("#homeLi").removeClass("active");
+    }
+</script>
+<section class="content">
+    <div class="contentici">
+        @{using (Html.BeginForm("UpdateFilesAdd", "AdmFiles", FormMethod.Post, new { enctype = "multipart/form-data", @class = "ac-checkbox ac-checkmark yazi_form" }))
+        {
+            foreach (var item in updateCollec)
+            {
+                @Html.ValidationSummary(true)
+                <div class="yazibaslik">
+                    @Html.ValidationMessage(item.FileTitle)
+                    @Html.TextBox("FileTitle", item.FileTitle, new { @class = "articleTitle", placeholder = "Dosya Başlığı" })
+                </div>
+                <br />
+                <br />
+                <div class="yazibaslik">
+                    @Html.ValidationMessage(item.FileAuthor)
+                    @Html.TextBox("FileAuthor", item.FileAuthor, new { @class = "articleTitle", placeholder = "Dosya Yazarı" })
+                </div>
+                <br /><br />
+                <div class="yazibaslik">
+                    @Html.ValidationMessage(item.FileTags)
+                    @Html.TextBox("FileTags", item.FileTags, new { @class = "articleTitle", placeholder = "Etiketler(virgül ile ayırınız)" })
+                </div>
+                <br /><br />
+                <div class="yazibaslik">
+                    @Html.TextArea("FileContent", item.FileContent, new { @class = "articleTitle", placeholder = "İçerik", id = "editor1" })
+                </div>
+                <br /><br />
+                @Html.Hidden("FileID", item.FileID)
+                <script type="text/javascript">
+                    var editor = CKEDITOR.instances['editor1']
+                    if (editor) { editor.destroy(true); }
+                    CKEDITOR.replace('editor1', {
+                        enterMode: CKEDITOR.ENTER_BR,
+                    })
+                    CKFinder.setupCKEditor(null, '@Url.Content("~/ckeditor/ckfinder/")')
+                </script>
+
+                <div class="onecikan">
+                    <div class="resimekle">
+                        <div class="resimekleic">
+                            <label for="Image">
+                                <img src="~/Content/Images/@item.FileImage" alt="resimekle">
+                            </label>
+                            <input type="file" id="Image" name="Image" accept="image/*" style="display: none;" />
+
+                        </div>
+                    </div>
+                </div>
+                @Html.Hidden("FileImage", item.FileImage)
+                <br /><br />
+                <ul class="ac-custom kategorilerssss">
+                    @if (item.PublishId == 0)
+                    {
+                        <li>
+                            @Html.CheckBox("chkPublish", false, new { name = "category", id = "kategori_1" })
+
+                            <b style="margin-left: 25px;">Yayına Al</b>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            @Html.CheckBox("chkPublish", true, new { name = "category", id = "kategori_1" })
+
+                            <b style="margin-left: 25px;">Yayından Kaldır</b>
+
+                        </li>
+
+                    }
+                    @Html.Hidden("chkPublish", item.PublishId)
+                </ul>
+
+
+            }
+
+            <button>GÜNCELLE</button>
+
+        }
+        }
+        <script src="~/Content/Administrator/scripts/onecikan_ekle.js"></script>
+    </div>
+</section>

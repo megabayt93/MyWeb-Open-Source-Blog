@@ -1,0 +1,595 @@
+.container{
+	width: 100%;
+	max-width: 1240px;
+	margin:0 auto;
+	padding:0 15px;
+}
+.row{
+	margin:0 -15px;
+}
+html,body{
+	height: 100% !important;
+}
+body{
+	background: #ededed;
+}
+.container410{
+	width: 100%;
+	max-width: 380px;
+	margin:0 auto;
+	padding:0 15px;
+}
+.girisyap{
+	width: 100%;
+	float: left;
+	position: relative;
+}
+.logo{
+	width: 100%;
+	float: left;
+	text-align: center;
+	background: #434e61;
+	padding-top: 20px;
+}
+.logo img{
+	padding-left:30px;
+}
+.mor{
+	background: #3b4557;
+}
+.inputlar{
+	width: 100%;
+	float: left;
+	padding:15px 30px;
+	background: #48bb8f;
+}
+.girisyap form button{
+	width: 100%;
+	float: left;
+	height: 75px;
+	background: #434e61;
+	border:none;
+    font-family: 'MB';
+    font-size: 14px;
+    color: #48bb8f;
+}
+.inputlar div{
+	width: 100%;
+	float: left;
+	height: 95px;
+	padding:15px 0;
+	position: relative;
+}
+.inputlar div input{
+	background: #40a77f;
+	width: 100%;
+	float: left;
+	border:none;
+	border-radius: 2px;
+	height: 100%;
+	padding:0 50px;
+    font-family: 'MB';
+    color: #73f9c6;
+    font-size: 14px;
+}
+.inputlar div input::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #73f9c6;
+    text-transform: uppercase;
+}
+.inputlar div input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #73f9c6;
+   opacity:  1;
+    text-transform: uppercase;
+}
+.inputlar div input::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #73f9c6;
+   opacity:  1;
+    text-transform: uppercase;
+}
+.inputlar div input:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    #73f9c6;
+    text-transform: uppercase;
+}
+.inputlar div label{
+	position: absolute;
+	top: 50%;
+	margin-top: -11px;
+	padding:0 20px;
+}
+.header{
+	width: 100%;
+	float: left;
+	height: 75px;
+	background: #3b4557;
+	position: fixed;
+	z-index: 100;
+}
+.header_logo{
+	float: left;
+	padding-top: 7px;
+}
+.fileChose {
+      display: inline-block;
+  width: 100%;
+  /* height: 45px; */
+  padding: 6px 12px;
+  font-size: 20px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 14px;
+}
+.welcome{
+	float: left;
+	padding-left: 100px;
+	line-height: 75px;
+    font-family: 'MB';
+    color: #ff6969;
+    font-size: 12px;
+}
+.yonetim{
+	float: right;
+}
+.yonetim div{
+	float: left;
+	padding:0 15px;
+    font-family: 'MB';
+}
+.cikisyap a{
+	color: #935bd3;
+	border-top: 4px solid #935bd3;
+	float: left;
+	line-height: 67px;
+	font-size: 12px;
+}
+.cikisyap a img{
+	padding-right: 5px;
+}
+.kullaniciaylari a{
+	color: #49c293;
+	border-top: 4px solid #49c293;
+	float: left;
+	line-height: 67px;
+	font-size: 12px;
+}
+.kullaniciaylari a img{
+	padding-right: 5px;
+}
+.nav{
+	float: left;
+	width: 20%;
+	height: 100%;
+	overflow: auto;
+	position: fixed;
+	top: 0;
+	padding-top: 105px;
+	background: #ff6969;
+}
+.nav ul{
+	float: left;
+	width: 100%;
+}
+.nav ul li{
+	float: left;
+	width: 100%;
+}
+.nav ul li a{
+	float: left;
+	width: 100%;
+	line-height: 50px;
+    font-family: 'MB';
+    color: #fff;
+    font-size: 15px;
+	background: #ff6969;
+	transition:300ms;
+	border-left:4px solid transparent;
+    padding-left: 40px;
+}
+.nav ul li a:hover{
+	border-left:4px solid #662a2a;
+	background: #cc5454;
+}
+.nav ul li.active a{
+	border-left:4px solid #662a2a;
+	background: #cc5454;
+}
+.nav ul li ul li a{
+	line-height: 23px;
+	font-size: 13px;
+    padding-left: 55px;
+}
+.nav ul li ul li:hover a{
+	color: #772828;
+}
+.nav ul li ul li.active a{
+	color: #772828;
+}
+.nav ul li ul li:last-child a{
+	padding-bottom: 15px;
+}
+.content{
+	width: 80%;
+	float: right;
+	position: absolute;
+	height: 100%;
+	top: 0;
+	left: 20%;
+	padding-top: 110px;
+	padding-bottom: 30px;
+	padding-right: 30px;
+	padding-left: 30px;
+}
+.yazibaslik{
+	float: left;
+	width: 100%;
+	border-radius: 2px;
+	color: #383838;
+    font-family: 'RR';
+    font-size: 16px;
+	position: relative;
+	z-index: 50;
+	padding-bottom: 30px;
+}
+.yazibaslik input{
+	width: 100%;
+	float: left;
+	line-height: 60px;
+	padding-left: 20px;
+	border:none;
+	position: relative;
+	background: #fff;
+
+}
+.yazieditor{
+	width: calc(75% - 30px);
+	position: relative;
+	float: left;
+	height: 83%;
+}
+.contentici{
+	float: left;
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+.yazieditoric{
+	width: 100%;
+	float: left;
+	height: 100%;
+	background: #fff;
+	padding:10px;
+	overflow: auto;
+}
+.sidebar{
+	width: 25%;
+	float: right;
+	position: relative;
+	z-index: 40;
+}
+.sidebaric{
+	width: 100%;
+	background: #fff;
+	height: 100%;
+	padding:20px;
+	float: left;
+}
+.yazieditoric textarea{
+	min-width: 100%;
+	max-width: 100%;
+	float: left;
+	min-height: 100%;
+	max-height: 100%;
+	padding:10px;
+	border:none;
+}
+.sidebaric .sidebarbaslik{
+	width: 100%;
+	float: left;
+	color: #ff6969;
+	font-size: 14px;
+	font-family: "MB";
+}
+.link{
+	display: none;
+}
+.popup{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background: rgba(0,0,0,0.4);
+	top: 0;
+	left: 0;
+	z-index: 100;
+	display: none;
+}
+.popup a{
+	width: 40%;
+	float: left;
+	line-height: 80px;
+	background: #3b4557;
+	text-align: center;
+    font-family: 'MB';
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #fff;
+    position: relative;
+    top: 50%;
+    margin:0 5%;
+    margin-top: -40px;
+}
+.popupic{
+	width: 50%;
+	height: 160px;
+	position: relative;
+	top: 50%;
+	margin-top: -80px;
+	background: #fff;
+	left: 25%;
+
+}
+.popup .sil{
+	background: #FF5151;
+}
+.resimekle{
+	width: calc(75% - 30px);
+	position: relative;
+	float: left;
+	max-height: 100%;
+	overflow: auto;
+}
+.resimekleic{
+	width: 100%;
+	float: left;
+	height: 100%;
+	background: #EDEDED;
+	overflow: auto;
+}
+.resimekleic label{
+	cursor: pointer;
+}
+.resimekleic label img{
+	width: 25%;
+
+	height: 180px;
+}
+.resimekleic input{
+	display: none;
+}
+.resimekleic output{
+	width: 100%;
+	float: left;
+	transition:1000ms;
+}
+.yuklendi{
+	padding:5px;
+}
+.resimekleic output div{
+	width: 25%;
+	height: 150px;
+	float: left;
+	padding:5px;
+}
+.resimekleic output div span{
+	width: 100%;
+	float: left;
+	height: 100%;
+	overflow: hidden;
+}
+
+.resimekleic output div img{
+	min-width: 100%;
+	max-width: 150%;
+	min-height: 100%;
+	max-height: 100%;
+}
+.yazi_form button{
+	width: 100%;
+	float: left;
+	height: 60px;
+	background: #49c293;
+	border:none;
+	margin-top:15px;
+	color: #fff;
+    font-family: 'MB';
+    font-size: 15px;
+}
+.yazi_form input[type="reset"]{
+	width: 100%;
+	float: left;
+	height: 60px;
+	background: #ff6969;
+	border:none;
+	margin-top:15px;
+	color: #fff;
+    font-family: 'MB';
+    font-size: 15px;
+}
+.yazi_form{
+	width: 100%;
+	float: left;
+	height: 100%;
+}
+.tum{
+	width: 100%;
+	float: left;
+	max-height: 100%;
+	overflow: auto;
+	overflow-x: hidden;
+	padding-right: 30px;
+}
+.tum .yazi{
+	width: 100%;
+	float: left;
+	line-height: 60px;
+	background: #fff;
+	border-radius: 2px;
+	padding:0 20px;
+	margin-bottom: 30px;
+}
+.tum .yazi .tum_yazibasligi{
+	float: left;
+}
+.tum .yazi .tum_yazibasligi a{
+	font-family: 'RR';
+    font-size: 16px;
+    color: #383838;
+}
+.tum .yazi .tum_duzen{
+	float: right;
+  
+}
+.tum .yazi .tum_duzen.f100 {
+      width: 100%;
+}
+.tum .yazi .tum_duzen.f100 span.kategorisi {
+    font-size: 12px;
+}
+.tum .yazi .tum_duzen span{
+	float: left;
+	margin-left: 15px;
+}
+.tum .yazi .tum_duzen span.kategorisi{
+    font-family: 'RB';
+	font-size: 10px;
+	color: #fff;
+	padding:0px 15px;
+	border-radius: 2px;
+	background: #49c293;
+	line-height: 25px;
+	margin-top: 19px;
+}
+.tum .galerisec{
+	width: 100%;
+	float: left;
+	border-radius: 2px;
+	line-height: 60px;
+	background: #fff;
+	padding:0 20px;
+}
+.tum .galerisec .sec{
+	float: left;
+	color: #3e3e3e;
+	font-size: 16px;
+	font-family: "RB";
+	margin-right: 30px;
+}
+.tum .galerisec .kategorisec{
+	float: left;
+	cursor:pointer;
+	color: #787878;
+	font-family: "RB";
+	font-size: 16px;
+}
+.tum .galerisec .kategorisec .kategori_ismi{
+	margin-right: 5px;
+}
+.tum .galerisec .kategorisec *{
+	float: left;
+	line-height: 60px;
+}
+.tum .kategoriler{
+	position: absolute;
+	line-height: 40px;
+	background: #fff;
+	padding:0 20px;
+	top: 60px;
+	left: 150px;
+	display: none;
+}
+.tum .kategoriler div{
+	color: #787878;
+	font-size: 16px;
+    font-family: 'RR';
+	cursor: pointer;
+}
+.tum .galeri{
+	width: 100%;
+	float: left;
+	margin-top: 30px;
+}
+.tum .galeri .galerirow{
+	margin:0 -15px;
+}
+.tum .galeri .resim{
+	width: 33.333%;
+	padding:0 15px 30px 15px;
+	float: left;
+}
+.tum .galeri .resim div{
+	width: 100%;
+	float: left;
+	border:8px solid #fff;
+	background: #fff;
+	border-radius: 2px;
+
+}
+.tum .galeri .resim .galeriresim{
+	width: 100%;
+	float: left;
+	height: 225px;
+	overflow: hidden;
+	cursor: pointer;
+}
+.tum .galeri .resim .galeriresim img{
+	min-width: 100%;
+	max-width: 150%;
+	min-height: 100%;
+	max-height: 100%;
+}
+.tum .galeri .resim .kategorisi{
+	font-family: 'RB';
+	font-size: 10px;
+	color: #fff;
+	padding:0px 15px;
+	border-radius: 2px;
+	background: #49c293;
+	line-height: 24px;
+	float: left;
+	margin-top: 8px;
+}
+.duzenle{
+	float: left;
+	margin-top: 8px;
+	margin-left: 8px;
+}
+.onecikan{
+	width: 100%;
+	float: left;
+}
+.onecikan .resimekle{
+	width: 100%;
+}
+.resimurl{
+	width:100%;
+	height: 100%;
+	background: rgba(0,0,0,0.4);
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	display: none;
+}
+.resimurl input{
+	width: 50%;
+	height: 6%;
+	padding:0 10px;
+	position: relative;
+	top: 50%;
+	margin-top: -3%;
+	left: 25%;
+}
+.resimurl .kapatresimurl{
+	width: 50%;
+	padding:15px 10px;
+	position: absolute;
+	top: 55%;
+	left: 25%;
+	text-align: center;
+	background: #ff6969;
+    font-family: 'MB';
+    color: #fff;
+    cursor: pointer;
+}

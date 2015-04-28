@@ -1,0 +1,74 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/adminLayout.cshtml";
+}
+<script>
+    window.onload = function () {
+        $("#commentLi").addClass("active");
+        $("#homeLi").removeClass("active");
+    }
+</script>
+<section class="content">
+    <div class="contentici">
+        <div class="tum">
+            @{
+                if (ViewData["setData"] != null)
+                {
+                    <div style="float: left; margin-top: 15px;">
+                        @foreach (var item in (IEnumerable<MyWebEntityLibrary.CommentsEntity.CommentsTable>)ViewData["setData"])
+                        {
+                            <div class="yazi">
+
+
+                                <div class="tum_duzen f100">
+
+                                    <span class="kategorisi">
+                                        <b>Adı Soyadı : @item.NameSurname</b>
+                                    </span>
+                                    <span class="kategorisi">
+                                        <b>Mail Adresi : @item.Mail</b>
+                                    </span>
+
+                                    <span class="kategorisi">
+                                        <b>Tarih : @item.Date</b>
+                                    </span>
+                                    <span class="kategorisi">
+                                        <b>Kategori : @item.Area</b>
+                                    </span>
+                                    <span class="kategorisi">
+                                        <b>Yorum Gönderilen İçerik: @item.ContentTitle</b>
+                                    </span>
+                                    <span class="kategorisi" style="height: 80px; overflow: auto; width: 98%;">
+                                        <b>
+                                            Yorum İçeriği : @item.Comment
+                                        </b>
+                                    </span>
+                                    <span style="float: right">
+                                        <a href="~/Administrator/AdmComment/DeleteComment/@item.CommentID">
+                                            <img src="~/Content/Administrator/Images/sil.png" alt="">
+                                        </a>
+                                    </span>
+                                </div>
+
+                            </div>
+
+                        }
+                        <div class="pagedList">
+                            @Html.PagedListPager((IPagedList<MyWebEntityLibrary.CommentsEntity.CommentsTable>)ViewData["setData"], sayfa => Url.Action("Index", "AdmComment", new { sayfa }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div style="  float: left; margin-top: 10px;"><b>Yorum Yok! Ön Kısımda Gönderilen Yorumlar Aşağıda Sıralanmaktadır.</b></div>
+
+                }
+}
+         
+           
+        </div>
+      
+    </div>
+</section>

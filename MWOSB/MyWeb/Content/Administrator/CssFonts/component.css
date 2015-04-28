@@ -1,0 +1,143 @@
+.ac-custom li {
+	margin: 5px auto;
+	position: relative;
+	float: left;
+	line-height: 30px;
+	width: 100%;
+}
+.ac-custom li a{
+	position: absolute;
+	right: 0;
+	color: #FF5151;
+	font-size: 12px;
+}
+.ac-custom{
+	float: left;
+	margin-top: 10px;
+}
+.ac-custom label {
+	display: inline-block;
+	position: relative;
+	font-size: 12px;
+	padding: 0 0 0 30px;
+	vertical-align: top;
+	color: #383838;
+	cursor: pointer;
+	-webkit-transition: color 0.3s;
+	transition: color 0.3s;
+    font-family: 'MB';
+}
+
+.ac-custom input[type="checkbox"],
+.ac-custom input[type="radio"],
+.ac-custom label::before {
+	width: 20px;
+	height:20px;
+	top: 50%;
+	left: 0;
+	margin-top: -10px;
+	position: absolute;
+	cursor: pointer;
+}
+
+.ac-custom input[type="checkbox"],
+.ac-custom input[type="radio"] {
+	
+	display: inline-block;
+	vertical-align: middle;
+	z-index: 100;
+}
+
+.ac-custom label::before {
+	content: '';
+	border: 4px solid #383838;
+	-webkit-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+	background: #383838;
+	border-radius:2px;
+}
+
+.ac-radio label::before {
+	border-radius: 50%;
+}
+
+.ac-custom input[type="checkbox"]:checked + label,
+.ac-custom input[type="radio"]:checked + label {
+} 
+
+.ac-custom input[type="checkbox"]:checked + label::before,
+.ac-custom input[type="radio"]:checked + label::before {
+	opacity: 0.8;
+}
+
+/* General SVG and path styles */
+
+.ac-custom svg {
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	top: 6px;
+	left: 2.5px;
+	pointer-events: none;
+}
+
+.ac-custom svg path {
+	stroke: #fff;
+	stroke-width: 13px;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	fill: none;
+}
+
+.ac-circle input[type="checkbox"],
+.ac-circle input[type="radio"],
+.ac-circle label::before {
+	width: 30px;
+	height: 30px;
+	margin-top: -15px;
+	left: 10px;
+	position: absolute;
+}
+
+.ac-circle label::before {
+	background-color: #fff;
+	border: none;
+}
+
+.ac-circle svg {
+	width: 70px;
+	height: 70px;
+	margin-top: -35px;
+	left: -10px;
+}
+
+.ac-circle svg path {
+	stroke-width: 5px;
+} 
+
+/* Box Fill */
+.ac-boxfill svg path {
+	stroke-width: 8px;
+} 
+
+/* Swirl */
+.ac-swirl svg path {
+	stroke-width: 8px;
+}
+
+
+.ac-list label::before {
+	display: none;
+}
+
+.ac-list svg {
+	width: 100%;
+	height: 80px;
+	left: 0;
+	top: 1.2em;
+	margin-top: 0px;
+}
+
+.ac-list svg path {
+	stroke-width: 4px;
+}

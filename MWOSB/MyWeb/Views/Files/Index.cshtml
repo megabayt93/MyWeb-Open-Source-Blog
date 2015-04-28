@@ -1,0 +1,67 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<MyWebEntityLibrary.FilesEntity.FilesTable>
+
+@{
+    ViewBag.Title = "Dosyalar";
+    Layout = "~/Views/topLayout.cshtml";
+}
+<script>
+    window.onload = function () {
+        $("#filesli").addClass("active");
+    }
+</script>
+
+
+<div class="col-md-8">
+    @foreach (var item in Model)
+    {
+        <div class="renk girdi">
+            <h3 class="baslik"><a href="~/dosyalar/@item.SeoTitle">@item.FileTitle</a></h3>
+            <ul class="girdiBilgi">
+                <li><i class="fa fa-calendar"></i>@item.Date</li>
+                <li><i class="fa fa-user"></i>@item.FileAuthor</li>
+
+            </ul>
+
+
+            <span class="girdiIcerik">
+                <span class="yazi_resim">
+                    <img src="~/Content/Images/@item.FileImage" alt="@item.SeoTitle" class="img-responsive img-rounded pull-left" />
+                    </span>
+                    @{string content = System.Text.RegularExpressions.Regex.Replace(item.FileContent, @"<(.|\n)*?>", string.Empty); }
+
+
+
+                    @try
+                    {
+                        @Html.Raw(content.Substring(0, 500));<a href="/dosyalar/@item.SeoTitle">...Devamını oku</a>
+
+                    }
+                    catch (Exception)
+                    {
+
+                        @Html.Raw(content)<a href="/dosyalar/@item.SeoTitle">...Devamını oku</a>
+                    }
+
+                </span>
+            <ul class="girdiBilgi">
+                @{string tag = item.FileTags;
+                string[] tagBreak = tag.Split(',');
+                }
+                <li>
+                    <i class="fa fa-tag"></i>@foreach (var tags in tagBreak)
+                    {
+                        <a href="~/etiketler/@tags.Trim().Replace(' ', '-')">@tags</a><text>,</text>
+                    }
+                </li>
+            </ul>
+        </div>
+    }
+    <div class="pagedList">
+        @Html.PagedListPager(Model, sayfa => Url.Action("Index", "Files", new { sayfa }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+    </div>
+
+</div>
+
+

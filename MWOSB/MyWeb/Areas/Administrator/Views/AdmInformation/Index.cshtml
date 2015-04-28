@@ -1,0 +1,37 @@
+﻿@model MyWebEntityLibrary.AdminInformationsEntity.AdminInformationsTable
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/adminLayout.cshtml";
+}
+<script>
+    window.onload = function () {
+        $("#adminLi").addClass("active");
+        $("#homeLi").removeClass("active");
+    }
+</script>
+<section class="content">
+    <div class="contentici">
+
+        @using (Ajax.BeginForm("AdminAdd", "AdmInformation", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divError" }, new { @class = "ac-checkbox ac-checkmark yazi_form" }))
+        {
+            <div class="yazibaslik">
+                @Html.TextBoxFor(ain => ain.AdminName, new { @class = "articleTitle", name = "AdminName", placeholder = "Kullanıcı Adı" })
+            </div>
+            <br /><br />
+            <div class="yazibaslik">
+                @Html.Password("oldPassword", "", new { @class = "articleTitle", placeholder = "Eski Şifre" })
+            </div>
+            <br /><br />
+            <div class="yazibaslik">
+                @Html.Password("newPassword", "", new { @class = "articleTitle", placeholder = "Yeni Şifre" })
+            </div>
+            <br /><br />
+            <button>GÜNCELLE</button>
+            <center><div id="divError"></div></center>
+        }
+
+
+
+
+    </div>
+</section>

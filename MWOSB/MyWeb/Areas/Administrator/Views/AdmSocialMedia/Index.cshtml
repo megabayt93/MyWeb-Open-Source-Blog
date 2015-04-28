@@ -1,0 +1,66 @@
+﻿@model MyWebEntityLibrary.SocialMediasEntity.SocialMediasTable
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/adminLayout.cshtml";
+}
+
+<script>
+    window.onload = function () {
+        $("#socialLi").addClass("active");
+        $("#homeLi").removeClass("active");
+    }
+</script>
+<section class="content">
+    <div class="contentici">
+        <div class="tum">
+            @using (Html.BeginForm("SocialMediaAdd", "AdmSocialMedia", FormMethod.Post, new {enctype = "multipart/form-data", @class = "ac-checkbox ac-checkmark yazi_form"}))
+            {
+
+                @Html.ValidationSummary(true)
+                <div class="yazibaslik">
+                    @Html.TextBox("Facebook", Model.Facebook, new {@class = "articleTitle", placeholder = "Facebook"})
+                </div>
+                <br/>
+                <br/>
+                <div class="yazibaslik">
+                    @Html.TextBox("Twitter", Model.Twitter, new {@class = "articleTitle", placeholder = "Twitter"})
+                </div>
+                <br/><br/>
+                <div class="yazibaslik">
+                    @Html.TextBox("Instagram", Model.Instagram, new {@class = "articleTitle", placeholder = "Instagram"})
+                </div>
+                <br/><br/>
+                <div class="yazibaslik">
+                    @Html.TextBox("Youtube", Model.Youtube, new {@class = "articleTitle", placeholder = "Youtube"})
+                </div>
+                <br/><br/>
+                <div class="yazibaslik">
+                    @Html.TextBox("Banner", Model.Banner, new {@class = "articleTitle", placeholder = "Banner"})
+                </div>
+                <br/><br/>
+                <div class="yazibaslik">
+                    @Html.TextBox("Explanation", Model.Explanation, new {@class = "articleTitle", placeholder = "Açıklama"})
+                </div>
+                <br/><br/>
+                <div class="onecikan">
+                    <div class="resimekle">
+                        <div class="resimekleic">
+                            <label for="Image">
+                                <img src="~/Content/Images/@Model.Image" alt="resimekle">
+                            </label>
+                            <input type="file" id="Image" name="Image" accept="image/*" style="display: none;"/>
+
+                        </div>
+                    </div>
+                </div>
+                @Html.Hidden("Image", Model.Image)
+
+
+                <br/><br/>
+                <button>GÜNCELLE</button>
+            }
+
+        </div>
+        <script src="~/Content/Administrator/scripts/onecikan_ekle.js"></script>
+    </div>
+</section>
