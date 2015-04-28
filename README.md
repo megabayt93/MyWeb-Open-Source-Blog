@@ -2,6 +2,8 @@
 Open Source Personel Blog
 Hello friends,
 
+DEMO: http://fatihyazici.kim
+
 I'm Fatih YAZICI, .Net software developer. I developing this open source personel blog, four month ago and finished.
 
 I publishing project code.
