@@ -21,11 +21,11 @@ namespace MyWeb.Controllers
         {
 
 
-            ViewData["articleSearch"] = (from p in _searchContext.Articles select p).OrderBy(aId => aId.ArticleID).Where(tg => tg.ArticleTags.Contains(searchText));
+            ViewData["articleSearch"] = (from p in _searchContext.Articles select p).Where(tg => tg.ArticleTags.Contains(searchText)).OrderBy(aId => aId.ArticleID);
 
-            ViewData["fileSearch"] = (from p in _searchContext.Files select p).OrderBy(fId => fId.FileID).Where(tg => tg.FileTags.Contains(searchText));
+            ViewData["fileSearch"] = (from p in _searchContext.Files select p).Where(tg => tg.FileTags.Contains(searchText)).OrderBy(fId => fId.FileID);
 
-            ViewData["whatIDoSearch"] = (from p in _searchContext.WhatIDos select p).OrderBy(aId => aId.WhatIDoID).Where(tg => tg.WhatIDoTags.Contains(searchText));
+            ViewData["whatIDoSearch"] = (from p in _searchContext.WhatIDos select p).Where(tg => tg.WhatIDoTags.Contains(searchText)).OrderBy(aId => aId.WhatIDoID);
 
             ViewBag.searchKeyword = searchText;
             ViewBag.searchContinue = "ile etiketlenmiş konular.";
