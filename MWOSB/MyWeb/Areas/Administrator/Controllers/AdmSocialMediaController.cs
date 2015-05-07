@@ -15,8 +15,8 @@ namespace MyWeb.Areas.Administrator.Controllers
         //
         // GET: /Administrator/AdmSocialMedia/
 
-       private readonly SocialMediasTable _socialMediasTable;
-       private readonly MyWebContext _socialContext;
+        private readonly SocialMediasTable _socialMediasTable;
+        private readonly MyWebContext _socialContext;
 
         public AdmSocialMediaController()
         {
@@ -35,23 +35,26 @@ namespace MyWeb.Areas.Administrator.Controllers
             {
                 _socialMediasTable.Image = "profil.jpg";
                 _socialMediasTable.Banner = "Fatih YAZICI";
-                _socialMediasTable.Explanation = ".Net Dünyasında Kaybolmuş Microsoft Sever";
+                _socialMediasTable.Explanation = ".Net Dünyasında Kaybolmuş Microsoft Sever(MEGABAYT)";
                 _socialMediasTable.Facebook = "https://www.facebook.com/o.bir.coder";
                 _socialMediasTable.Instagram = "http://instagram.com/obircoder";
                 _socialMediasTable.Twitter = "https://twitter.com/TeknodeliFatih";
                 _socialMediasTable.Youtube = "https://www.youtube.com/channel/UCG_yhERI1Q8RD_aJazfcfrA";
+                _socialMediasTable.LinkedIn =
+                    "https://www.linkedin.com/profile/preview?locale=tr_TR&trk=prof-0-sb-preview-primary-button";
+                _socialMediasTable.Github = "https://github.com/megabayt93";
                 _socialContext.SocialMedias.Add(_socialMediasTable);
                 _socialContext.SaveChanges();
                 return RedirectToAction("Index", "AdmSocialMedia");
-              
+
             }
-          
+
         }
 
         [HttpPost, ValidateInput(false)]
         public ActionResult SocialMediaAdd(HttpPostedFileBase Image, SocialMediasTable stable)
         {
-            
+
 
             try
             {
@@ -62,6 +65,8 @@ namespace MyWeb.Areas.Administrator.Controllers
                 socialControl.Instagram = stable.Instagram;
                 socialControl.Twitter = stable.Twitter;
                 socialControl.Youtube = stable.Youtube;
+                socialControl.LinkedIn = stable.LinkedIn;
+                socialControl.Github = stable.Github;
 
                 if (Image != null)
                 {
@@ -90,6 +95,8 @@ namespace MyWeb.Areas.Administrator.Controllers
                 _socialMediasTable.Instagram = stable.Instagram;
                 _socialMediasTable.Twitter = stable.Twitter;
                 _socialMediasTable.Youtube = stable.Youtube;
+                _socialMediasTable.LinkedIn = stable.LinkedIn;
+                _socialMediasTable.Github = stable.Github;
                 _socialMediasTable.Image = "profil.jpg";
                 _socialContext.SocialMedias.Add(stable);
                 _socialContext.SaveChanges();

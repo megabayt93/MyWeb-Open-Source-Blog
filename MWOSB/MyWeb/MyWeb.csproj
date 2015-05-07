@@ -157,6 +157,7 @@
     <Compile Include="Areas\Administrator\Controllers\AdmSocialMediaController.cs" />
     <Compile Include="Areas\Administrator\Controllers\AdmWhatIDoController.cs" />
     <Compile Include="Areas\Administrator\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Administrator\Models\ModelArticle.cs" />
     <Compile Include="Areas\Administrator\Models\myAuthorize.cs" />
     <Compile Include="Areas\Administrator\Models\Seo.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />

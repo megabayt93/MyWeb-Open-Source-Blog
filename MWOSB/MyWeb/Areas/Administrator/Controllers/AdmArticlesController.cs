@@ -18,22 +18,20 @@ namespace MyWeb.Areas.Administrator.Controllers
     {
         //
         // GET: /Administrator/AdmArticles/
-       private readonly MyWebContext _articlesContext;
-       private readonly ArticlesTable _articlesTable;
+        private readonly MyWebContext _articlesContext;
+        private readonly ArticlesTable _articlesTable;
+        private readonly ModelArticle _modelArticle;
         public AdmArticlesController()
         {
+            _modelArticle = new ModelArticle();
             _articlesTable = new ArticlesTable();
             _articlesContext = new MyWebContext();
         }
 
-        public ActionResult Index(int sayfa=1)
+        public ActionResult Index(int sayfa = 1)
         {
-          
-            var comingArticle=(from p in _articlesContext.Articles select p).OrderByDescending(aId=>aId.ArticleID).ToPagedList(sayfa, 10);
-            ViewData["setArticle"] = comingArticle;
+            ViewData["setArticle"] = _modelArticle.ComingArticleData(sayfa);
             return View();
-             
-           
         }
 
 
@@ -42,50 +40,31 @@ namespace MyWeb.Areas.Administrator.Controllers
         public ActionResult ArticlesAdd(HttpPostedFileBase Image, bool chkPublish, ArticlesTable articleTable)
         {
             var seoMake = Seo.Translate(articleTable.ArticleTitle);
-
+            string filePath = "content-icon.png";
+            const int publishId = 0;
             if (Image != null)
             {
-                string filePath = Path.GetFileName(Image.FileName);
+                filePath = Path.GetFileName(Image.FileName);
                 filePath = seoMake + ".jpg";
                 var uploadPath = Path.Combine(Server.MapPath("~/Content/Images/"), filePath);
                 Image.SaveAs(uploadPath);
-                _articlesTable.Image = filePath;
 
             }
-            else
-            {
 
-                _articlesTable.Image = "content-icon.png";
-
-            }
             if (chkPublish == true)
             {
 
                 _articlesTable.PublishId = 1;
 
             }
-            else
-            {
-                _articlesTable.PublishId = 0;
-            }
-            _articlesTable.ArticleTitle = articleTable.ArticleTitle;
-            _articlesTable.ArticleAuthor = articleTable.ArticleAuthor;
-            _articlesTable.ArticleContent = articleTable.ArticleContent;
-            _articlesTable.ArticleTags = articleTable.ArticleTags;
-            _articlesTable.Date = DateTime.Now;
-            _articlesTable.SeoTitle = seoMake;
-            _articlesContext.Articles.Add(_articlesTable);
-            _articlesContext.SaveChanges();
+
+            _modelArticle.AddArticleData(articleTable.ArticleTitle, articleTable.ArticleAuthor,
+                    articleTable.ArticleContent, articleTable.ArticleTags, DateTime.Now, seoMake, publishId, filePath);
             return RedirectToAction("Index", "AdmArticles");
-
-
-
         }
         public ActionResult UpdateArticle(int id)
         {
-
-            var updateComing = (from p in _articlesContext.Articles select p).Where(aID => aID.ArticleID == id);
-            ViewBag.Update = updateComing;
+            ViewBag.Update = _modelArticle.ComingUpdateArticle(id);
             Session["id"] = id;
             return View();
         }
@@ -94,40 +73,28 @@ namespace MyWeb.Areas.Administrator.Controllers
         public ActionResult UpdateArticleAdd(HttpPostedFileBase Image, bool? chkPublish, ArticlesTable articleTable)
         {
             var seoMake = Seo.Translate(articleTable.ArticleTitle);
-            ArticlesTable updateArticleTable = (from p in _articlesContext.Articles select p).First(uId => uId.ArticleID == articleTable.ArticleID);
-
+          
+            string filePath = articleTable.Image;
+            int PublishId = articleTable.PublishId;
             if (Image != null)
             {
-                string filePath = Path.GetFileName(Image.FileName);
+                filePath = Path.GetFileName(Image.FileName);
                 filePath = seoMake + ".jpg";
                 var uploadPath = Path.Combine(Server.MapPath("~/Content/Images/"), filePath);
-                Image.SaveAs(uploadPath);
-                updateArticleTable.Image = filePath;
-
+                Image.SaveAs(uploadPath);  
             }
-            else
-            {
-
-                updateArticleTable.Image = articleTable.Image;
-
-            }
+        
             if (chkPublish == true)
             {
-
-                updateArticleTable.PublishId = 1;
-
+             PublishId = 1;
             }
             else
             {
-                updateArticleTable.PublishId = 0;
-            }
-            updateArticleTable.ArticleTitle = articleTable.ArticleTitle;
-            updateArticleTable.ArticleAuthor = articleTable.ArticleAuthor;
-            updateArticleTable.ArticleContent = articleTable.ArticleContent;
-            updateArticleTable.ArticleTags = articleTable.ArticleTags;
-            updateArticleTable.SeoTitle = seoMake;
-            updateArticleTable.Date = DateTime.Now;
-            _articlesContext.SaveChanges();
+               PublishId = 0;
+            }    
+   
+            _modelArticle.UpdateArticleData(articleTable.ArticleTitle, articleTable.ArticleAuthor,
+                articleTable.ArticleContent, articleTable.ArticleTags, DateTime.Now, seoMake,PublishId,filePath, articleTable.ArticleID);
 
             return RedirectToAction("Index", "AdmArticles");
 
@@ -136,13 +103,13 @@ namespace MyWeb.Areas.Administrator.Controllers
         {
             var delete = (from p in _articlesContext.Articles select p).FirstOrDefault(articleID => articleID.ArticleID == id);
 
-            if (delete.Image!="content-icon.png")
+            if (delete.Image != "content-icon.png")
             {
                 System.IO.File.Delete(Server.MapPath("~/Content/Images/" + delete.Image));
             }
 
-            
-            
+
+
             _articlesContext.Articles.Remove(delete);
             _articlesContext.SaveChanges();
             return RedirectToAction("Index", "AdmArticles");

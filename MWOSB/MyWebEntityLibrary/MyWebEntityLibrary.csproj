@@ -83,6 +83,10 @@
     <Compile Include="Migrations\201502202136259_updtdtbs5.Designer.cs">
       <DependentUpon>201502202136259_updtdtbs5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505061236175_updateBlogOne.cs" />
+    <Compile Include="Migrations\201505061236175_updateBlogOne.Designer.cs">
+      <DependentUpon>201505061236175_updateBlogOne.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SocialMediasEntity\SocialMediasTable.cs" />
     <Compile Include="WhatIDoEntity\WhatIDoTable.cs" />
@@ -111,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502202136259_updtdtbs5.resx">
       <DependentUpon>201502202136259_updtdtbs5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505061236175_updateBlogOne.resx">
+      <DependentUpon>201505061236175_updateBlogOne.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

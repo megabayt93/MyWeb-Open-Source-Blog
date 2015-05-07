@@ -13,42 +13,46 @@
 <section class="content">
     <div class="contentici">
         <div class="tum">
-            @using (Html.BeginForm("SocialMediaAdd", "AdmSocialMedia", FormMethod.Post, new {enctype = "multipart/form-data", @class = "ac-checkbox ac-checkmark yazi_form"}))
+            @using (Html.BeginForm("SocialMediaAdd", "AdmSocialMedia", FormMethod.Post, new { enctype = "multipart/form-data", @class = "ac-checkbox ac-checkmark yazi_form" }))
             {
 
                 @Html.ValidationSummary(true)
                 <div class="yazibaslik">
-                    @Html.TextBox("Facebook", Model.Facebook, new {@class = "articleTitle", placeholder = "Facebook"})
+                    @Html.TextBox("Facebook", Model.Facebook, new { @class = "articleTitle", placeholder = "Facebook" })
                 </div>
-                <br/>
-                <br/>
+                <br />
+                <br />
                 <div class="yazibaslik">
-                    @Html.TextBox("Twitter", Model.Twitter, new {@class = "articleTitle", placeholder = "Twitter"})
+                    @Html.TextBox("Twitter", Model.Twitter, new { @class = "articleTitle", placeholder = "Twitter" })
                 </div>
-                <br/><br/>
+                <br /><br />
                 <div class="yazibaslik">
-                    @Html.TextBox("Instagram", Model.Instagram, new {@class = "articleTitle", placeholder = "Instagram"})
+                    @Html.TextBox("Instagram", Model.Instagram, new { @class = "articleTitle", placeholder = "Instagram" })
                 </div>
-                <br/><br/>
+                <br /><br />
                 <div class="yazibaslik">
-                    @Html.TextBox("Youtube", Model.Youtube, new {@class = "articleTitle", placeholder = "Youtube"})
+                    @Html.TextBox("LinkedIn", Model.Instagram, new { @class = "articleTitle", placeholder = "LinkedIn" })
                 </div>
-                <br/><br/>
+                <br /><br />
                 <div class="yazibaslik">
-                    @Html.TextBox("Banner", Model.Banner, new {@class = "articleTitle", placeholder = "Banner"})
+                    @Html.TextBox("Youtube", Model.Youtube, new { @class = "articleTitle", placeholder = "Youtube" })
                 </div>
-                <br/><br/>
+                <br /><br />
                 <div class="yazibaslik">
-                    @Html.TextBox("Explanation", Model.Explanation, new {@class = "articleTitle", placeholder = "Açıklama"})
+                    @Html.TextBox("Banner", Model.Banner, new { @class = "articleTitle", placeholder = "Banner" })
                 </div>
-                <br/><br/>
+                <br /><br />
+                <div class="yazibaslik">
+                    @Html.TextBox("Explanation", Model.Explanation, new { @class = "articleTitle", placeholder = "Açıklama" })
+                </div>
+                <br /><br />
                 <div class="onecikan">
                     <div class="resimekle">
                         <div class="resimekleic">
                             <label for="Image">
                                 <img src="~/Content/Images/@Model.Image" alt="resimekle">
                             </label>
-                            <input type="file" id="Image" name="Image" accept="image/*" style="display: none;"/>
+                            <input type="file" id="Image" name="Image" accept="image/*" style="display: none;" />
 
                         </div>
                     </div>
@@ -56,7 +60,7 @@
                 @Html.Hidden("Image", Model.Image)
 
 
-                <br/><br/>
+                <br /><br />
                 <button>GÜNCELLE</button>
             }
 

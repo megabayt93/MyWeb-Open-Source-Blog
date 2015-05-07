@@ -21,6 +21,10 @@ namespace MyWebEntityLibrary.SocialMediasEntity
 
         public string Instagram { get; set; }
 
+        public string LinkedIn { get; set; }
+
+        public string Github { get; set; }
+
         public string Banner { get; set; }
 
         public string Explanation { get; set; }
