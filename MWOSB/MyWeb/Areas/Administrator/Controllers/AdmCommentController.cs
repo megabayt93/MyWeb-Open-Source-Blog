@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MyWeb.Areas.Administrator.Models;
 using PagedList;
 using PagedList.Mvc;
 
@@ -13,33 +14,34 @@ namespace MyWeb.Areas.Administrator.Controllers
     {
         //
         // GET: /Administrator/AdmComment/
-      private  readonly MyWebContext _commentContext;
+      
+
+        private readonly ModelComment _modelComment;
 
         public AdmCommentController()
         {
-          _commentContext = new MyWebContext();
+            _modelComment = new ModelComment();
+          
         }
 
-        public ActionResult Index(int sayfa=1)
+        public ActionResult Index(int sayfa = 1)
         {
-            var comingComments = (from p in _commentContext.Comments select p).OrderByDescending(id => id.CommentID).ToPagedList(sayfa, 20);
-            if (comingComments.Count<1)
+          
+            if (_modelComment.ComingCommentData(sayfa)!=null)
             {
-                ViewData["setData"] = null;
+                ViewData["setData"] = _modelComment.ComingCommentData(sayfa);
             }
             else
             {
-                ViewData["setData"] = comingComments;
+                ViewData["setData"] = null;
             }
-           
+
             return View();
         }
 
         public ActionResult DeleteComment(int id)
         {
-            var delete = (from p in _commentContext.Comments select p).FirstOrDefault(articleID => articleID.CommentID == id);
-            _commentContext.Comments.Remove(delete);
-            _commentContext.SaveChanges();
+           _modelComment.Delete(id);
             return RedirectToAction("Index", "AdmComment");
         }
 

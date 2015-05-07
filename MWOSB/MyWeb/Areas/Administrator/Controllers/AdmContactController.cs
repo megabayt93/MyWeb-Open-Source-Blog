@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MyWeb.Areas.Administrator.Models;
 using PagedList;
 using PagedList.Mvc;
 
@@ -17,30 +18,29 @@ namespace MyWeb.Areas.Administrator.Controllers
 
        private readonly ContactsTable _contactsTable;
        private readonly MyWebContext _contactContext;
+        private readonly ModelContact _modelContact;
 
         public AdmContactController()
         {
             _contactContext = new MyWebContext();
             _contactsTable = new ContactsTable();
+            _modelContact=new ModelContact();
         }
 
         public ActionResult Index(int sayfa=1)
         {
 
-            var comingMessage = (from p in _contactContext.Messages select p).OrderByDescending(id => id.MessageId).ToPagedList(sayfa, 10);
-            if (comingMessage.Count<1)
+
+            if (_modelContact.ComingContactData(sayfa) != null)
             {
-                ViewData["setData"] = null;
+                ViewData["setData"] = _modelContact.ComingContactData(sayfa);
             }
             else
             {
-                ViewData["setData"] = comingMessage;
+                ViewData["setData"] = null;
             }
 
-
-            var comingContact = (from p in _contactContext.Contacts select p).FirstOrDefault(cId => cId.ContactId > 0);
-
-            return View(comingContact);
+            return View(_modelContact.ComingContactInfo());
         }
 
         [HttpPost, ValidateInput(false)]

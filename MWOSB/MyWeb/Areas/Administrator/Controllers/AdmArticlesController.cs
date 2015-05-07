@@ -18,14 +18,14 @@ namespace MyWeb.Areas.Administrator.Controllers
     {
         //
         // GET: /Administrator/AdmArticles/
-        private readonly MyWebContext _articlesContext;
+      
         private readonly ArticlesTable _articlesTable;
         private readonly ModelArticle _modelArticle;
         public AdmArticlesController()
         {
             _modelArticle = new ModelArticle();
             _articlesTable = new ArticlesTable();
-            _articlesContext = new MyWebContext();
+           
         }
 
         public ActionResult Index(int sayfa = 1)
@@ -73,7 +73,7 @@ namespace MyWeb.Areas.Administrator.Controllers
         public ActionResult UpdateArticleAdd(HttpPostedFileBase Image, bool? chkPublish, ArticlesTable articleTable)
         {
             var seoMake = Seo.Translate(articleTable.ArticleTitle);
-          
+
             string filePath = articleTable.Image;
             int PublishId = articleTable.PublishId;
             if (Image != null)
@@ -81,37 +81,28 @@ namespace MyWeb.Areas.Administrator.Controllers
                 filePath = Path.GetFileName(Image.FileName);
                 filePath = seoMake + ".jpg";
                 var uploadPath = Path.Combine(Server.MapPath("~/Content/Images/"), filePath);
-                Image.SaveAs(uploadPath);  
+                Image.SaveAs(uploadPath);
             }
-        
+
             if (chkPublish == true)
             {
-             PublishId = 1;
+                PublishId = 1;
             }
             else
             {
-               PublishId = 0;
-            }    
-   
+                PublishId = 0;
+            }
+
             _modelArticle.UpdateArticleData(articleTable.ArticleTitle, articleTable.ArticleAuthor,
-                articleTable.ArticleContent, articleTable.ArticleTags, DateTime.Now, seoMake,PublishId,filePath, articleTable.ArticleID);
+                articleTable.ArticleContent, articleTable.ArticleTags, DateTime.Now, seoMake, PublishId, filePath, articleTable.ArticleID);
 
             return RedirectToAction("Index", "AdmArticles");
 
         }
         public ActionResult DeleteArticle(int id)
         {
-            var delete = (from p in _articlesContext.Articles select p).FirstOrDefault(articleID => articleID.ArticleID == id);
-
-            if (delete.Image != "content-icon.png")
-            {
-                System.IO.File.Delete(Server.MapPath("~/Content/Images/" + delete.Image));
-            }
-
-
-
-            _articlesContext.Articles.Remove(delete);
-            _articlesContext.SaveChanges();
+           
+            _modelArticle.Delete(id);
             return RedirectToAction("Index", "AdmArticles");
         }
 

@@ -59,5 +59,17 @@ namespace MyWeb.Areas.Administrator.Models
             updateArticleTable.Image = image;
             _articlesContext.SaveChanges();
         }
+
+        public void Delete(int id)
+        {
+            var delete = (from p in _articlesContext.Articles select p).FirstOrDefault(articleId => articleId.ArticleID == id);
+
+            if (delete.Image != "content-icon.png")
+            {
+                System.IO.File.Delete(HttpContext.Current.Server.MapPath("~/Content/Images/" + delete.Image));
+            }
+            _articlesContext.Articles.Remove(delete);
+            _articlesContext.SaveChanges();
+        }
     }
 }
