@@ -16,18 +16,18 @@ namespace MyWeb.Areas.Administrator.Controllers
         //
         // GET: /Administrator/AdmContact/
 
-       private readonly ContactsTable _contactsTable;
-       private readonly MyWebContext _contactContext;
+        private readonly ContactsTable _contactsTable;
+        private readonly MyWebContext _contactContext;
         private readonly ModelContact _modelContact;
 
         public AdmContactController()
         {
             _contactContext = new MyWebContext();
             _contactsTable = new ContactsTable();
-            _modelContact=new ModelContact();
+            _modelContact = new ModelContact();
         }
 
-        public ActionResult Index(int sayfa=1)
+        public ActionResult Index(int sayfa = 1)
         {
 
 

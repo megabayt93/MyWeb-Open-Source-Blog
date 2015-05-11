@@ -16,76 +16,64 @@ namespace MyWeb.Areas.Administrator.Controllers
     {
         //
         // GET: /Administrator/AdmFiles/
-       private readonly FilesTable _filesTable;
-      private  readonly MyWebContext _filesContext;
+   
+    
+
+        private readonly ModelFiles _modelFiles;
 
         public AdmFilesController()
         {
-            _filesTable = new FilesTable();
-            _filesContext = new MyWebContext();
+            _modelFiles = new ModelFiles();
         }
 
         public ActionResult Index(int sayfa = 1)
         {
-            var comingFiles = (from p in _filesContext.Files select p).OrderByDescending(aId => aId.FileID).ToPagedList(sayfa, 10);
-            ViewData["setFile"] = comingFiles;
+
+            ViewData["setFile"] = _modelFiles.ComingFilesData(sayfa);
             return View();
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult FilesAdd(HttpPostedFileBase Image, HttpPostedFileBase FileStream, bool chkPublish, FilesTable fileTable)
         {
+            string filePath = "Dosya Yok!";
+            string imagePath = "content-icon.png";
+            int publishId = 0;
             var seoMake = Seo.Translate(fileTable.FileTitle);
+
             if (FileStream != null)
             {
+                filePath = Path.GetFileName(FileStream.FileName);
 
-                string filePath = Path.GetFileName(FileStream.FileName);
+
                 var uploadPath = Path.Combine(Server.MapPath("~/Content/Files/"), filePath);
                 FileStream.SaveAs(uploadPath);
-                _filesTable.FileStream = filePath;
+
             }
-            else
-            {
-                _filesTable.FileStream = "Dosya Yok";
-            }
+
             if (Image != null)
             {
-                string imagePath = Path.GetFileName(Image.FileName);
+                imagePath = Path.GetFileName(Image.FileName);
                 imagePath = seoMake + ".jpg";
                 var uploadPath = Path.Combine(Server.MapPath("~/Content/Images/"), imagePath);
                 Image.SaveAs(uploadPath);
-                _filesTable.FileImage = imagePath;
-
             }
-            else
-            {
 
-                _filesTable.FileImage = "content-icon.png";
-
-            }
             if (chkPublish == true)
             {
 
-                _filesTable.PublishId = 1;
+                publishId = 1;
 
             }
-            else
-            {
-                _filesTable.PublishId = 0;
-            }
-            _filesTable.FileTitle = fileTable.FileTitle;
-            _filesTable.FileAuthor = fileTable.FileAuthor;
-            _filesTable.FileContent = fileTable.FileContent;
-            _filesTable.FileTags = fileTable.FileTags;
-            _filesTable.Date = DateTime.Now;
-            _filesTable.SeoTitle = seoMake;
-            _filesContext.Files.Add(_filesTable);
-            _filesContext.SaveChanges();
+
+
+            _modelFiles.AddFileData(fileTable.FileTitle, fileTable.FileAuthor, fileTable.FileContent,
+                    fileTable.FileTags, filePath, DateTime.Now, seoMake, publishId, imagePath);
+
             return RedirectToAction("Index", "AdmFiles");
         }
         public ActionResult UpdateFile(int id)
         {
-            var updateComing = (from p in _filesContext.Files select p).Where(fID => fID.FileID == id);
-            ViewBag.Update = updateComing;
+            ViewBag.Update = _modelFiles.ComingUpdateFile(id);
             Session["id"] = id;
             return View();
         }
@@ -94,40 +82,27 @@ namespace MyWeb.Areas.Administrator.Controllers
         public ActionResult UpdateFilesAdd(HttpPostedFileBase FileImage, bool? chkPublish, FilesTable fileTable)
         {
             var seoMake = Seo.Translate(fileTable.FileTitle);
-            FilesTable updateFileTable = (from p in _filesContext.Files select p).First(uID => uID.FileID == fileTable.FileID);
-
+         
+            string fileImage = fileTable.FileStream;
+            int publishId = 0;
             if (FileImage != null)
             {
-                string filePath = Path.GetFileName(FileImage.FileName);
-                filePath = seoMake + ".jpg";
-                var uploadPath = Path.Combine(Server.MapPath("~/Content/Images/"), filePath);
+                fileImage = Path.GetFileName(FileImage.FileName);
+                fileImage = seoMake + ".jpg";
+                var uploadPath = Path.Combine(Server.MapPath("~/Content/Images/"), fileImage);
                 FileImage.SaveAs(uploadPath);
-                updateFileTable.FileImage = filePath;
+
 
             }
-            else
-            {
 
-                updateFileTable.FileImage = fileTable.FileImage;
-
-            }
             if (chkPublish == true)
             {
 
-                updateFileTable.PublishId = 1;
+                publishId = 1;
 
             }
-            else
-            {
-                updateFileTable.PublishId = 0;
-            }
-            updateFileTable.FileTitle = fileTable.FileTitle;
-            updateFileTable.FileAuthor = fileTable.FileAuthor;
-            updateFileTable.FileContent = fileTable.FileContent;
-            updateFileTable.FileTags = fileTable.FileTags;
-            updateFileTable.Date = DateTime.Now;
-            updateFileTable.SeoTitle = seoMake;
-            _filesContext.SaveChanges();
+
+            _modelFiles.UpdateFileData(fileTable.FileTitle, fileTable.FileAuthor, fileTable.FileContent, fileTable.FileTags, DateTime.Now, seoMake, publishId, fileImage, fileTable.FileID);
 
             return RedirectToAction("Index", "AdmFiles");
 
@@ -135,19 +110,7 @@ namespace MyWeb.Areas.Administrator.Controllers
 
         public ActionResult DeleteFile(int id)
         {
-            var delete = (from p in _filesContext.Files select p).FirstOrDefault(articleID => articleID.FileID == id);
-
-            if (delete.FileImage != "content-icon.png")
-            {
-                System.IO.File.Delete(Server.MapPath("~/Content/Images/" + delete.FileImage));
-            }
-
-            if (delete.FileStream!="Dosya Yok")
-            {
-                  System.IO.File.Delete(Server.MapPath("~/Content/Files/" + delete.FileStream));
-            }
-            _filesContext.Files.Remove(delete);
-            _filesContext.SaveChanges();
+            _modelFiles.Delete(id);
             return RedirectToAction("Index", "AdmFiles");
         }
 

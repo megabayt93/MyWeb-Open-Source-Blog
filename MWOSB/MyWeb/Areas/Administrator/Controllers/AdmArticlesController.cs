@@ -18,14 +18,11 @@ namespace MyWeb.Areas.Administrator.Controllers
     {
         //
         // GET: /Administrator/AdmArticles/
-      
-        private readonly ArticlesTable _articlesTable;
+  
         private readonly ModelArticle _modelArticle;
         public AdmArticlesController()
         {
-            _modelArticle = new ModelArticle();
-            _articlesTable = new ArticlesTable();
-           
+            _modelArticle = new ModelArticle();      
         }
 
         public ActionResult Index(int sayfa = 1)
@@ -41,7 +38,7 @@ namespace MyWeb.Areas.Administrator.Controllers
         {
             var seoMake = Seo.Translate(articleTable.ArticleTitle);
             string filePath = "content-icon.png";
-            const int publishId = 0;
+            int publishId = 0;
             if (Image != null)
             {
                 filePath = Path.GetFileName(Image.FileName);
@@ -54,7 +51,7 @@ namespace MyWeb.Areas.Administrator.Controllers
             if (chkPublish == true)
             {
 
-                _articlesTable.PublishId = 1;
+                publishId = 1;
 
             }
 

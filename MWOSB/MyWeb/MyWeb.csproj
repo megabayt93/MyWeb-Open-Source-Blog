@@ -160,6 +160,7 @@
     <Compile Include="Areas\Administrator\Models\ModelArticle.cs" />
     <Compile Include="Areas\Administrator\Models\ModelComment.cs" />
     <Compile Include="Areas\Administrator\Models\ModelContact.cs" />
+    <Compile Include="Areas\Administrator\Models\ModelFiles.cs" />
     <Compile Include="Areas\Administrator\Models\myAuthorize.cs" />
     <Compile Include="Areas\Administrator\Models\Seo.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
