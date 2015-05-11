@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MyWeb.Models;
+using MyWebEntityLibrary.ArticlesEntity;
 
 namespace MyWeb.Controllers
 {
@@ -13,85 +15,60 @@ namespace MyWeb.Controllers
     {
         //
         // GET: /ContentDetail/
-       private readonly MyWebContext _detailContext;
-       private readonly CommentsTable _commentTable;
+        private readonly ModelDetail _modelDetail;
+        private readonly MyWebContext _detailContext;
+        private readonly CommentsTable _commentTable;
         public ContentDetailController()
         {
             _detailContext = new MyWebContext();
             _commentTable = new CommentsTable();
+            _modelDetail = new ModelDetail();
         }
         public ActionResult Index(string title)
         {
-
-            var detailArticle = (from p in _detailContext.Articles select p).FirstOrDefault(pId => pId.SeoTitle == title);
-
             try
             {
-                var comments = (from p in _detailContext.Comments select p).Where(cID => cID.ContentId == detailArticle.ArticleID).Where(ar => ar.Area == "Makaleler").ToList();
-                ViewData["setComment"] = comments;
+
+                ViewData["setComment"] = _modelDetail.ComingComment(title);
             }
             catch (Exception)
             {
-
-              
-            } 
-            return View(detailArticle);
+            }
+            return View(_modelDetail.ComingArticleDetail(title));
         }
 
         public ActionResult FileDetail(string title)
         {
-            var detailFile = (from p in _detailContext.Files select p).FirstOrDefault(pId => pId.SeoTitle == title);
-
             try
             {
-                var comments = (from p in _detailContext.Comments select p).Where(cId => cId.ContentId == detailFile.FileID).Where(ar => ar.Area == "Dosyalar").ToList();
-                ViewData["setComment"] = comments;
+                ViewData["setComment"] = _modelDetail.ComingFileComment(title);
             }
             catch (Exception)
             {
-                
-               
             }
-           
-            return View(detailFile);
+            return View(_modelDetail.ComingFileDetail(title));
         }
 
         public ActionResult WhatIDoDetail(string title)
         {
-            var detailWhatIDo = (from p in _detailContext.WhatIDos select p).FirstOrDefault(pId => pId.SeoTitle == title);
             try
             {
-                var comments = (from p in _detailContext.Comments select p).Where(cID => cID.ContentId == detailWhatIDo.WhatIDoID).Where(ar => ar.Area == "Neler Yaparım").ToList();
-                ViewData["setComment"] = comments;
+
+                ViewData["setComment"] = _modelDetail.ComingWhatIDoComment(title);
             }
             catch (Exception)
             {
-                
-               
             }
-           
-            return View(detailWhatIDo);
-
+            return View(_modelDetail.ComingWhatIDoDetail(title));
         }
 
-        public ActionResult CommentAdd(string uri, string NameSurname,string ContentTitle, string Mail, string Comment, string CommentArea, int ContentId)
-        {
-            _commentTable.Area = CommentArea;
-            _commentTable.Comment = Comment;
-            _commentTable.ContentId = ContentId;
-            _commentTable.Date = DateTime.Now;
-            _commentTable.Mail = Mail;
-            _commentTable.ContentTitle = ContentTitle;
-            _commentTable.NameSurname = NameSurname;
-            _detailContext.Comments.Add(_commentTable);
-            _detailContext.SaveChanges();
-
+        public ActionResult CommentAdd(string uri, string NameSurname, string ContentTitle, string Mail, string Comment, string CommentArea, int ContentId)
+        { 
+            _modelDetail.CommentAdd(NameSurname,ContentTitle,Mail,Comment,CommentArea,ContentId);
             return Redirect(uri);
-
-           
         }
 
-     
+
 
     }
 }

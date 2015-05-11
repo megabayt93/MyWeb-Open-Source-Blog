@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.Ajax.Utilities
+@using MyWeb.Areas.Administrator.Models
+@using MyWebEntityLibrary.SocialMediasEntity
+<!DOCTYPE html>
 
 <link href="~/Content/MyCss.css" rel="stylesheet" />
 <script src="~/Content/js/jquery-1.8.2.min.js"></script>
@@ -51,7 +54,18 @@
                     @{
 
                         MyWebEntityLibrary.MyWebContext entity = new MyWebEntityLibrary.MyWebContext();
-                        var comingInformation = (from p in entity.SocialMedias select p).OrderBy(id => id.SocialMediasId > 0).First();
+                        var comingInformation = new SocialMediasTable();
+                        try
+                        {
+                            comingInformation = (from p in entity.SocialMedias select p).First(id => id.SocialMediasId > 0);
+                        }
+                        catch (Exception)
+                        {
+                            ModelSocialMedia _modelSocialMedia=new ModelSocialMedia();
+
+                           _modelSocialMedia.UpdateSocialMedia("Fatih YAZICI", ".Net Dünyasında Kaybolmuş Microsoft Sever(MEGABAYT)", "https://www.facebook.com/o.bir.coder", "http://instagram.com/obircoder", "https://twitter.com/TeknodeliFatih", "https://www.youtube.com/channel/UCG_yhERI1Q8RD_aJazfcfrA", "https://www.linkedin.com/profile/preview?locale=tr_TR&trk=prof-0-sb-preview-primary-button", "https://github.com/megabayt93","profil.jpg");
+                        }
+                     
                     }
                     <a class="navbar-brand" href="~/anasayfa"><i class="fa fa-user"></i> @comingInformation.Banner</a>
                 </div>
@@ -84,6 +98,9 @@
                         <li><a href="@comingInformation.Twitter" target="_blank" class="fa fa-twitter"></a></li>
                         <li><a href="@comingInformation.Youtube" target="_blank" class="fa fa-youtube"></a></li>
                         <li><a href="@comingInformation.Instagram" target="_blank" class="fa fa-instagram"></a></li>
+                        <li><a href="@comingInformation.LinkedIn" target="_blank" class="fa fa-linkedin"></a></li>
+                        <li><a href="@comingInformation.Github" target="_blank" class="fa fa-github"></a></li>
+                        
                     </ul>
                 </div>
                 <div class="clearfix"></div>

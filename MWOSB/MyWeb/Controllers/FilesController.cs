@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MyWeb.Models;
 using PagedList;
 using PagedList.Mvc;
 
@@ -14,15 +15,14 @@ namespace MyWeb.Controllers
     {
         //
         // GET: /Files/
-       private readonly MyWebContext _filesContext;
+        private readonly ModelFile _modelFile;
         public FilesController()
         {
-            _filesContext = new MyWebContext();
+         _modelFile=new ModelFile();
         }
         public ActionResult Index(int sayfa=1)
         {
-
-            return View(_filesContext.Files.Where(pId => pId.PublishId == 1).OrderByDescending(fId => fId.FileID).ToPagedList(sayfa, 4));
+            return View(_modelFile.ComingArticles(sayfa));
         }
 
     }

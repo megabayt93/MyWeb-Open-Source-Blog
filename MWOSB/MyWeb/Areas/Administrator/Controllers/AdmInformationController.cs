@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MyWeb.Areas.Administrator.Models;
 
 namespace MyWeb.Areas.Administrator.Controllers
 {
@@ -12,43 +13,30 @@ namespace MyWeb.Areas.Administrator.Controllers
     {
         //
         // GET: /Administrator/AdmInformation/
-       private readonly MyWebContext _admContext;
-       private readonly AdminInformationsTable _admMainTable;
+      
+        private readonly ModelInformation _modelInformation;
+     
         public AdmInformationController()
         {
-            _admContext = new MyWebContext();
-            _admMainTable = new AdminInformationsTable();
+           
+            _modelInformation = new ModelInformation();
+           
         }
         public ActionResult Index()
         {
-            var updateAdm = (from p in _admContext.AdminInformations select p).First(fId => fId.AdminId > 0);
-            return View(updateAdm);
+
+            return View(_modelInformation.ComingInformation());
         }
 
-       
 
-        public JavaScriptResult AdminAdd(string AdminName,string oldPassword, string newPassword)
+
+        public JavaScriptResult AdminAdd(string AdminName, string oldPassword, string newPassword)
         {
-            var comingAdmin = (from p in _admContext.AdminInformations select p).First(cId => cId.AdminId > 0);
 
-            if (oldPassword == comingAdmin.AdminPassword)
-            {
+            return JavaScript(_modelInformation.AddInformation(AdminName,oldPassword,newPassword));
 
-                comingAdmin.AdminName = AdminName;
-                comingAdmin.AdminPassword = newPassword;
-                _admContext.SaveChanges();
-
-                string s = "$('#divError').html('Şifre Güncellendi!');";
-                return JavaScript(s);  
-            }
-            else
-            {
-                string s = "$('#divError').html('Eski Şifre Uyuşmuyor!');";
-                return JavaScript(s);   
-               
-            }
-           
         }
 
+      
     }
 }
