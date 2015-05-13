@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
+using MyWeb.Models;
 
 namespace MyWeb.Controllers
 {
@@ -12,23 +14,27 @@ namespace MyWeb.Controllers
     {
         //
         // GET: /Search/
-       private readonly MyWebContext _searchContext;
+
+        private readonly ModelSearch _modelSearch;
         public SearchController()
         {
-            _searchContext = new MyWebContext();
+            _modelSearch = new ModelSearch();
+
         }
         public ActionResult Index(string searchText)
         {
 
 
-            ViewData["articleSearch"] = (from p in _searchContext.Articles select p).Where(tg => tg.ArticleTags.Contains(searchText)).OrderBy(aId => aId.ArticleID);
+            ViewData["articleSearch"] = _modelSearch.ComingSearchArticleData(searchText);
 
-            ViewData["fileSearch"] = (from p in _searchContext.Files select p).Where(tg => tg.FileTags.Contains(searchText)).OrderBy(fId => fId.FileID);
+            ViewData["fileSearch"] = _modelSearch.ComingSearchFileData(searchText);
 
-            ViewData["whatIDoSearch"] = (from p in _searchContext.WhatIDos select p).Where(tg => tg.WhatIDoTags.Contains(searchText)).OrderBy(aId => aId.WhatIDoID);
+            ViewData["whatIDoSearch"] = _modelSearch.ComingSearchWhatIDoData(searchText);
 
+                
+         
             ViewBag.searchKeyword = searchText;
-            ViewBag.searchContinue = "ile etiketlenmiş konular.";
+            ViewBag.searchContinue = "ile etiketlenmiş konular aşağıdadır.";
 
             return View();
 

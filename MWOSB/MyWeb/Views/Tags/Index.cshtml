@@ -55,7 +55,7 @@
     @foreach (var item in (IEnumerable<MyWebEntityLibrary.FilesEntity.FilesTable>)ViewData["fileTags"])
     {
         <div class="renk girdi">
-            <h3 class="baslik"><a href="~/ContentDetail/Index/@item.SeoTitle">@item.FileTitle</a></h3>
+            <h3 class="baslik"><a href="~/dosyalar/@item.SeoTitle">@item.FileTitle</a></h3>
             <ul class="girdiBilgi">
                 <li><a href="#"><i class="fa fa-calendar"></i>@item.Date</a></li>
                 <li><a href="#"><i class="fa fa-user"></i>@item.FileAuthor</a></li>
@@ -73,7 +73,7 @@
 
                 @try
                 {
-                    @Html.Raw(content.Substring(0, 500));<a href="/DetayaGit/Index/@item.SeoTitle">...Devamını oku</a>
+                    @Html.Raw(content.Substring(0, 500));<a href="/dosyalar/@item.SeoTitle">...Devamını oku</a>
 
                 }
                 catch (Exception)

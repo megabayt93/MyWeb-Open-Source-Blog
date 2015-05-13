@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
+using MyWeb.Models;
 
 namespace MyWeb.Controllers
 {
@@ -14,14 +15,16 @@ namespace MyWeb.Controllers
     {
         //
         // GET: /WhatIDo/
-      private  readonly MyWebContext _whatIDosContext;
+
+        private readonly ModelWhatIDo _modelWhatIDo;
         public WhatIDoController()
         {
-            _whatIDosContext = new MyWebContext();
+            _modelWhatIDo = new ModelWhatIDo();
+
         }
-        public ActionResult Index(int sayfa= 1)
+        public ActionResult Index(int sayfa = 1)
         {
-            return View(_whatIDosContext.WhatIDos.Where(pId => pId.PublishId == 1).OrderByDescending(wId => wId.WhatIDoID).ToPagedList(sayfa, 4));
+            return View(_modelWhatIDo.ComingWhatIDo(sayfa));
         }
 
     }

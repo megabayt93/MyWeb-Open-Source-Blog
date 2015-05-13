@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MyWeb.Models;
 using PagedList;
 using PagedList.Mvc;
 
@@ -14,27 +15,23 @@ namespace MyWeb.Controllers
     {
         //
         // GET: /Tags/
-       private readonly MyWebContext _tagsContext;
+     
+        private readonly ModelTags _modelTags;
         public TagsController()
         {
-            _tagsContext = new MyWebContext();
+            _modelTags = new ModelTags();
+           
         }
         public ActionResult Index(string title)
         {
 
+            ViewBag.tagName = title.Replace('-', ' ');
 
+            ViewData["articleTags"] = _modelTags.ComingTagArticleData(title);
 
-            string tag = title.Replace('-', ' ');
-            ViewBag.tagName = tag;
+            ViewData["fileTags"] = _modelTags.ComingTagFileData(title);
 
-            ViewData["articleTags"] = (from p in _tagsContext.Articles select p).OrderBy(aID => aID.ArticleID).Where(tg => tg.ArticleTags.Contains(tag));
-
-            ViewData["fileTags"] = (from p in _tagsContext.Files select p).OrderBy(fID => fID.FileID).Where(tg => tg.FileTags.Contains(tag));
-
-            ViewData["whatIDoTags"] = (from p in _tagsContext.WhatIDos select p).OrderBy(aID => aID.WhatIDoID).Where(tg => tg.WhatIDoTags.Contains(tag));
-         
-
-       
+            ViewData["whatIDoTags"] = _modelTags.ComingTagWhatIDoData(title);
 
             return View();
         }

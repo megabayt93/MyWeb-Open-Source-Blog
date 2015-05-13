@@ -29,7 +29,7 @@ namespace MyWeb.Models
         public object ComingComment(string title)
         {
             var detailCommentArticle = (from p in _detailContext.Articles select p).FirstOrDefault(pId => pId.SeoTitle == title);
-            var comments = (from p in _detailContext.Comments select p).Where(cId => cId.ContentId == detailCommentArticle.ArticleID).Where(ar => ar.Area == "Makaleler").ToList();
+            var comments = (from p in _detailContext.Comments select p).Where(cId => cId.ContentId == detailCommentArticle.ArticleID).Where(ar => ar.Area == "Makaleler").OrderByDescending(cId=>cId.CommentID);
             return comments;
         }
 
@@ -43,7 +43,7 @@ namespace MyWeb.Models
         public object ComingFileComment(string title)
         {
             var detailCommentFile = (from p in _detailContext.Files select p).FirstOrDefault(pId => pId.SeoTitle == title);
-            var comments = (from p in _detailContext.Comments select p).Where(cId => cId.ContentId == detailCommentFile.FileID).Where(ar => ar.Area == "Dosyalar").ToList();
+            var comments = (from p in _detailContext.Comments select p).Where(cId => cId.ContentId == detailCommentFile.FileID).Where(ar => ar.Area == "Dosyalar").OrderByDescending(cId => cId.CommentID);
             return comments;
         }
 
@@ -56,7 +56,7 @@ namespace MyWeb.Models
         public object ComingWhatIDoComment(string title)
         {
             var detailCommentWhatIDo = (from p in _detailContext.WhatIDos select p).FirstOrDefault(pId => pId.SeoTitle == title);
-            var comments = (from p in _detailContext.Comments select p).Where(cId => cId.ContentId == detailCommentWhatIDo.WhatIDoID).Where(ar => ar.Area == "Neler Yaparım").ToList();
+            var comments = (from p in _detailContext.Comments select p).Where(cId => cId.ContentId == detailCommentWhatIDo.WhatIDoID).Where(ar => ar.Area == "Neler Yaparım").OrderByDescending(cId => cId.CommentID);
             return comments;
         }
 
