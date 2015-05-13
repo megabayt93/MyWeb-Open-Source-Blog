@@ -15,11 +15,11 @@ namespace MyWeb.Controllers
     {
         //
         // GET: /Articles/
-        private readonly MyWebContext _articlesContext;
+     
         private readonly ModelArticles _modelArticles;
         public ArticlesController()
         {
-            _articlesContext = new MyWebContext();
+            _modelArticles=new ModelArticles();
         }
         public ActionResult Index(int sayfa = 1)
         {
