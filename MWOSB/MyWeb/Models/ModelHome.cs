@@ -18,7 +18,7 @@ namespace MyWeb.Models
 
         public object ComingArticleData()
         {
-            int countArticle = _homeContext.Articles.Count();
+            int countArticle = _homeContext.Articles.Count(pId => pId.PublishId == 1);
             int calcArticle = countArticle - 2;
             if (countArticle < 2)
             {
@@ -31,7 +31,7 @@ namespace MyWeb.Models
 
         public object ComingFileData()
         {
-            int countFile = _homeContext.Files.Count();
+            int countFile = _homeContext.Files.Count(pId => pId.PublishId == 1);
             int calcFile = countFile - 2;
             if (countFile < 2)
             {
@@ -44,7 +44,7 @@ namespace MyWeb.Models
 
         public object ComingWhatIDoData()
         {
-            int countWhatIDo = _homeContext.WhatIDos.Count();
+            int countWhatIDo = _homeContext.WhatIDos.Count(pId => pId.PublishId == 1);
             int calcWhatIDo = countWhatIDo - 2;
             if (countWhatIDo < 2)
             {
