@@ -52,7 +52,7 @@ namespace MyWeb.Areas.Administrator.Models
         public void UpdateFileData(string fileTitle, string fileAuthor, string fileContent, string fileTags, DateTime dateTime, string seoTitle, int publishId, string image, int id)
         {
             FilesTable updateFileTable = _filesContext.Files.First(uId => uId.FileID == id);
-            updateFileTable.FileTitle = fileAuthor;
+            updateFileTable.FileTitle = fileTitle;
             updateFileTable.FileAuthor = fileAuthor;
             updateFileTable.FileContent = fileContent;
             updateFileTable.FileTags = fileTags;

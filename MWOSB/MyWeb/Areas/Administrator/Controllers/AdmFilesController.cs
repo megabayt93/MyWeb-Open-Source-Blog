@@ -82,14 +82,14 @@ namespace MyWeb.Areas.Administrator.Controllers
         public ActionResult UpdateFilesAdd(HttpPostedFileBase FileImage, bool? chkPublish, FilesTable fileTable)
         {
             var seoMake = Seo.Translate(fileTable.FileTitle);
-         
-            string fileImage = fileTable.FileStream;
+
+            string imagePath = fileTable.FileImage;
             int publishId = 0;
             if (FileImage != null)
             {
-                fileImage = Path.GetFileName(FileImage.FileName);
-                fileImage = seoMake + ".jpg";
-                var uploadPath = Path.Combine(Server.MapPath("~/Content/Images/"), fileImage);
+                imagePath = Path.GetFileName(FileImage.FileName);
+                imagePath = seoMake + ".jpg";
+                var uploadPath = Path.Combine(Server.MapPath("~/Content/Images/"), imagePath);
                 FileImage.SaveAs(uploadPath);
 
 
@@ -102,7 +102,7 @@ namespace MyWeb.Areas.Administrator.Controllers
 
             }
 
-            _modelFiles.UpdateFileData(fileTable.FileTitle, fileTable.FileAuthor, fileTable.FileContent, fileTable.FileTags, DateTime.Now, seoMake, publishId, fileImage, fileTable.FileID);
+            _modelFiles.UpdateFileData(fileTable.FileTitle, fileTable.FileAuthor, fileTable.FileContent, fileTable.FileTags, DateTime.Now, seoMake, publishId, imagePath, fileTable.FileID);
 
             return RedirectToAction("Index", "AdmFiles");
 
