@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Medya Ekle";
+    Layout = "~/Areas/Administrator/Views/adminLayout.cshtml";
+}
+<script>
+    window.onload = function () {
+        $("#mediaLi").addClass("active");
+        $("#homeLi").removeClass("active");
+    }
+</script>
+<section class="content">
+    <div class="contentici">
+
+        @Html.ActionLink("Tüm Resimler","AllMedia")<br/><br/>
+
+        @using (Html.BeginForm("Add", "AdmMedia", FormMethod.Post, new { enctype = "multipart/form-data", @class = "ac-checkbox ac-checkmark yazi_form" }))
+            {
+                <div class="onecikan">
+                    <div class="resimekle">
+                        <div class="resimekleic">
+                            <label for="Image">
+                                <img src="~/Content/Administrator/Images/resimekle.jpg" class="mediaAdd" alt="resimekle">
+                            </label>
+                            <input type="file" id="Image" name="Image" class="articleFile" accept="image/*" multiple style="display: none;" />
+                            <button class="mediaButton">KAYDET</button>
+                        </div>
+                    </div>
+                 
+                </div>
+  
+            }
+            <div class="popup"></div>
+
+        </div>
+  
+ 
+    <script src="~/Content/Administrator/scripts/onecikan_ekle.js"></script>
+</section>

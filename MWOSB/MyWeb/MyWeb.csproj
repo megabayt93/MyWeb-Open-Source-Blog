@@ -154,6 +154,7 @@
     <Compile Include="Areas\Administrator\Controllers\AdmContactController.cs" />
     <Compile Include="Areas\Administrator\Controllers\AdmFilesController.cs" />
     <Compile Include="Areas\Administrator\Controllers\AdmInformationController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\AdmMediaController.cs" />
     <Compile Include="Areas\Administrator\Controllers\AdmSocialMediaController.cs" />
     <Compile Include="Areas\Administrator\Controllers\AdmWhatIDoController.cs" />
     <Compile Include="Areas\Administrator\Controllers\LoginController.cs" />
@@ -162,6 +163,7 @@
     <Compile Include="Areas\Administrator\Models\ModelContact.cs" />
     <Compile Include="Areas\Administrator\Models\ModelFiles.cs" />
     <Compile Include="Areas\Administrator\Models\ModelInformation.cs" />
+    <Compile Include="Areas\Administrator\Models\ModelMedia.cs" />
     <Compile Include="Areas\Administrator\Models\ModelSocialMedia.cs" />
     <Compile Include="Areas\Administrator\Models\ModelWhatIDo.cs" />
     <Compile Include="Areas\Administrator\Models\myAuthorize.cs" />
@@ -634,6 +636,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administrator\Views\Shared\" />
     <Folder Include="Content\Files\" />
+    <Folder Include="Content\UploadImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -803,6 +806,8 @@
     <Content Include="Content\Administrator\CssFonts\RalewayThin.ttf" />
     <Content Include="Content\Administrator\CssFonts\RalewayThin.woff" />
     <Content Include="Content\Administrator\CssFonts\RalewayThin.woff2" />
+    <Content Include="Areas\Administrator\Views\AdmMedia\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\AdmMedia\AllMedia.cshtml" />
     <None Include="Properties\PublishProfiles\developerfatih.pubxml" />
   </ItemGroup>
   <PropertyGroup>

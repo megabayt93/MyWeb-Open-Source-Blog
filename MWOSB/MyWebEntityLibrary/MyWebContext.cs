@@ -10,6 +10,7 @@ using MyWebEntityLibrary.CommentsEntity;
 using MyWebEntityLibrary.AdminInformationsEntity;
 using MyWebEntityLibrary.SocialMediasEntity;
 using MyWebEntityLibrary.ContactsEntity;
+using MyWebEntityLibrary.MediasEntity;
 using MyWebEntityLibrary.MessageEntity;
 namespace MyWebEntityLibrary
 {
@@ -31,6 +32,9 @@ namespace MyWebEntityLibrary
         public DbSet<ContactsTable> Contacts { get; set; }
 
         public DbSet<MessagesTable> Messages { get; set; }
+
+        public DbSet<MediasTable> Medias { get; set; }
+ 
 
     }
 }

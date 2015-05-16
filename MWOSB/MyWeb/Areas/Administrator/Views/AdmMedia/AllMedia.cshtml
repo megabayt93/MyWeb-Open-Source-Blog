@@ -1,0 +1,42 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Tüm Medyalar";
+    Layout = "~/Areas/Administrator/Views/adminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="contentici">
+        <div class="tum">
+            <div class="galeri">
+                <div class="galerirow">
+
+                    @foreach (var item in (IEnumerable<MyWebEntityLibrary.MediasEntity.MediasTable>)ViewData["sendMedia"])
+                    {
+                        <div class="resim" data-yusuf="Medya">
+                            <div>
+                                <span class="galeriresim">
+                                    <img src="~/Content/UploadImages/@item.MediaUrl" alt="">
+                                </span>
+                                <span class="kategorisi">
+                                    Medya
+                                </span>
+                                <span class="duzenle">
+                                    <a href="/administrator/admmedia/delete/@item.MediaId">
+                                        <img src="/Content/Administrator/Images/sil.png" alt="">
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="pagedList">
+                @Html.PagedListPager((IPagedList<MyWebEntityLibrary.MediasEntity.MediasTable>)ViewData["sendMedia"], page => Url.Action("AllMedia", "AdmMedia", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+            </div>
+        </div>
+    </div>
+
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+
+</section>
