@@ -637,6 +637,7 @@
     <Folder Include="Areas\Administrator\Views\Shared\" />
     <Folder Include="Content\Files\" />
     <Folder Include="Content\UploadImages\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -808,7 +809,6 @@
     <Content Include="Content\Administrator\CssFonts\RalewayThin.woff2" />
     <Content Include="Areas\Administrator\Views\AdmMedia\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\AdmMedia\AllMedia.cshtml" />
-    <None Include="Properties\PublishProfiles\developerfatih.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

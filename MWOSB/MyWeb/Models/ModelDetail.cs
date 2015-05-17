@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.Ajax.Utilities;
 using MyWebEntityLibrary;
 using MyWebEntityLibrary.ArticlesEntity;
 using MyWebEntityLibrary.CommentsEntity;
@@ -22,7 +23,7 @@ namespace MyWeb.Models
 
         public object ComingArticleDetail(string title)
         {
-            var detailArticle = (from p in _detailContext.Articles select p).FirstOrDefault(pId => pId.SeoTitle == title);
+            var detailArticle = (from p in _detailContext.Articles select p).Where(pId=>pId.PublishId==1).FirstOrDefault(pId => pId.SeoTitle == title);
             return detailArticle;
         }
 
@@ -36,7 +37,7 @@ namespace MyWeb.Models
 
         public object ComingFileDetail(string title)
         {
-            var detailFile = (from p in _detailContext.Files select p).FirstOrDefault(pId => pId.SeoTitle == title);
+            var detailFile = (from p in _detailContext.Files select p).Where(pId => pId.PublishId == 1).FirstOrDefault(pId => pId.SeoTitle == title);
             return detailFile;
         }
 
@@ -49,7 +50,7 @@ namespace MyWeb.Models
 
         public object ComingWhatIDoDetail(string title)
         {
-            var detailWhatIDo = (from p in _detailContext.WhatIDos select p).FirstOrDefault(pId => pId.SeoTitle == title);
+            var detailWhatIDo = (from p in _detailContext.WhatIDos select p).Where(pId => pId.PublishId == 1).FirstOrDefault(pId => pId.SeoTitle == title);
             return detailWhatIDo;
         }
 

@@ -93,7 +93,7 @@ namespace MyWeb.Areas.Administrator.Controllers
             if (chkPublish == true)
             {
 
-                publishId = 2;
+                publishId = 1;
 
             }
             _modelWhatIDo.UpdateWhatIDoData(whatIDoTable.WhatIDoTitle, whatIDoTable.WhatIDoContent,

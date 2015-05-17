@@ -21,13 +21,13 @@ namespace MyWeb.Areas.Administrator.Models
 
         public object ComingWhatIDoData(int id)
         {
-            var comingWhatIDo = (from p in _whatIDoContext.WhatIDos select p).OrderByDescending(aId => aId.WhatIDoID).ToPagedList(id, 10);
+            var comingWhatIDo = (from p in _whatIDoContext.WhatIDos select p).OrderByDescending(wIDoId => wIDoId.WhatIDoID).ToPagedList(id, 10);
             return comingWhatIDo;
         }
 
         public object ComingUpdateWhatIDo(int id)
         {
-            var updateComing = (from p in _whatIDoContext.WhatIDos select p).Where(fID => fID.WhatIDoID == id);
+            var updateComing = (from p in _whatIDoContext.WhatIDos select p).Where(wIDoId => wIDoId.WhatIDoID == id);
             return updateComing;
         }
 
