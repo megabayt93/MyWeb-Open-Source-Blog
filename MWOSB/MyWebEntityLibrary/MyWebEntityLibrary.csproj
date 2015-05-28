@@ -58,6 +58,7 @@
     <Compile Include="CommentsEntity\CommentsTable.cs" />
     <Compile Include="ContactsEntity\ContactsTable.cs" />
     <Compile Include="FilesEntity\FilesTable.cs" />
+    <Compile Include="MailEntity\MailsTable.cs" />
     <Compile Include="MediasEntity\MediasTable.cs" />
     <Compile Include="MessageEntity\MessagesTable.cs" />
     <Compile Include="Migrations\201501232038122_InitialCreate.cs" />
@@ -91,6 +92,18 @@
     <Compile Include="Migrations\201505162003302_Update-Database.cs" />
     <Compile Include="Migrations\201505162003302_Update-Database.Designer.cs">
       <DependentUpon>201505162003302_Update-Database.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505272249476_addMailSettings.cs" />
+    <Compile Include="Migrations\201505272249476_addMailSettings.Designer.cs">
+      <DependentUpon>201505272249476_addMailSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505272301269_UpdateMail.cs" />
+    <Compile Include="Migrations\201505272301269_UpdateMail.Designer.cs">
+      <DependentUpon>201505272301269_UpdateMail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505272331440_updateMailPort.cs" />
+    <Compile Include="Migrations\201505272331440_updateMailPort.Designer.cs">
+      <DependentUpon>201505272331440_updateMailPort.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SocialMediasEntity\SocialMediasTable.cs" />
@@ -126,6 +139,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505162003302_Update-Database.resx">
       <DependentUpon>201505162003302_Update-Database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505272249476_addMailSettings.resx">
+      <DependentUpon>201505272249476_addMailSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505272301269_UpdateMail.resx">
+      <DependentUpon>201505272301269_UpdateMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505272331440_updateMailPort.resx">
+      <DependentUpon>201505272331440_updateMailPort.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

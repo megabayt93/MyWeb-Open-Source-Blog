@@ -154,6 +154,7 @@
     <Compile Include="Areas\Administrator\Controllers\AdmContactController.cs" />
     <Compile Include="Areas\Administrator\Controllers\AdmFilesController.cs" />
     <Compile Include="Areas\Administrator\Controllers\AdmInformationController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\AdmMailController.cs" />
     <Compile Include="Areas\Administrator\Controllers\AdmMediaController.cs" />
     <Compile Include="Areas\Administrator\Controllers\AdmSocialMediaController.cs" />
     <Compile Include="Areas\Administrator\Controllers\AdmWhatIDoController.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="Areas\Administrator\Models\ModelContact.cs" />
     <Compile Include="Areas\Administrator\Models\ModelFiles.cs" />
     <Compile Include="Areas\Administrator\Models\ModelInformation.cs" />
+    <Compile Include="Areas\Administrator\Models\ModelMail.cs" />
     <Compile Include="Areas\Administrator\Models\ModelMedia.cs" />
     <Compile Include="Areas\Administrator\Models\ModelSocialMedia.cs" />
     <Compile Include="Areas\Administrator\Models\ModelWhatIDo.cs" />
@@ -562,6 +564,7 @@
     <Content Include="Content\Administrator\Images\cikis.png" />
     <Content Include="Content\Administrator\Images\duzenle.png" />
     <Content Include="Content\Administrator\Images\kadi.png" />
+    <Content Include="Content\Administrator\Images\mail.png" />
     <Content Include="Content\Administrator\Images\resimekle.jpg" />
     <Content Include="Content\Administrator\Images\sifre.png" />
     <Content Include="Content\Administrator\Images\sil.png" />
@@ -809,6 +812,9 @@
     <Content Include="Content\Administrator\CssFonts\RalewayThin.woff2" />
     <Content Include="Areas\Administrator\Views\AdmMedia\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\AdmMedia\AllMedia.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administrator\Views\AdmMail\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

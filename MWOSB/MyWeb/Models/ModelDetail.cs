@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using Microsoft.Ajax.Utilities;
 using MyWebEntityLibrary;
@@ -17,20 +18,20 @@ namespace MyWeb.Models
 
         public ModelDetail()
         {
-            _detailContext=new MyWebContext();
-            _commentTable=new CommentsTable();
+            _detailContext = new MyWebContext();
+            _commentTable = new CommentsTable();
         }
 
         public object ComingArticleDetail(string title)
         {
-            var detailArticle = (from p in _detailContext.Articles select p).Where(pId=>pId.PublishId==1).FirstOrDefault(pId => pId.SeoTitle == title);
+            var detailArticle = (from p in _detailContext.Articles select p).Where(pId => pId.PublishId == 1).FirstOrDefault(pId => pId.SeoTitle == title);
             return detailArticle;
         }
 
         public object ComingComment(string title)
         {
             var detailCommentArticle = (from p in _detailContext.Articles select p).FirstOrDefault(pId => pId.SeoTitle == title);
-            var comments = (from p in _detailContext.Comments select p).Where(cId => cId.ContentId == detailCommentArticle.ArticleID).Where(ar => ar.Area == "Makaleler").OrderByDescending(cId=>cId.CommentID);
+            var comments = (from p in _detailContext.Comments select p).Where(cId => cId.ContentId == detailCommentArticle.ArticleID).Where(ar => ar.Area == "Makaleler").OrderByDescending(cId => cId.CommentID);
             return comments;
         }
 
@@ -72,6 +73,42 @@ namespace MyWeb.Models
             _commentTable.NameSurname = NameSurname;
             _detailContext.Comments.Add(_commentTable);
             _detailContext.SaveChanges();
+
+            try
+            {
+                var mailControl = _detailContext.Mails.OrderBy(m => m.MailId > 0).FirstOrDefault();
+                SmtpClient smtpServer = new SmtpClient(mailControl.MailSmtp,mailControl.MailPort);
+                var sendMail = new MailMessage();
+                sendMail.From = new MailAddress(mailControl.MailAdress);
+
+                sendMail.To.Add(mailControl.MailAdress);
+
+
+
+
+                sendMail.Subject = "İçeriğe Yorum Yazıldı";
+                sendMail.IsBodyHtml = true;
+
+
+                sendMail.Body =
+                    "<html><body><b>YENİ BİR YORUM VAR!</b><br><br><b>Bilgiler Aşağıdaki Gibidir.</b><br><br>Mesaj Gönderenin<br> İsmi: " +
+                    NameSurname + " <br>e-Mail: " + Mail + "<br>İçerik Başlığı: " + ContentTitle + "<br>Yorum: " + Comment + "<br>Yorum Atılan Bölüm: " + CommentArea + "</body></html>";
+                smtpServer.EnableSsl = true;
+                smtpServer.UseDefaultCredentials = false;
+                smtpServer.Credentials = new System.Net.NetworkCredential(mailControl.MailAdress, mailControl.MailPassword);
+                
+                smtpServer.Send(sendMail);
+
+
+
+            }
+            catch (Exception)
+            {
+
+                return;
+            }
         }
+
+
     }
 }

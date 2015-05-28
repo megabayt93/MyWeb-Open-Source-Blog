@@ -10,13 +10,14 @@ using MyWebEntityLibrary.CommentsEntity;
 using MyWebEntityLibrary.AdminInformationsEntity;
 using MyWebEntityLibrary.SocialMediasEntity;
 using MyWebEntityLibrary.ContactsEntity;
+using MyWebEntityLibrary.MailEntity;
 using MyWebEntityLibrary.MediasEntity;
 using MyWebEntityLibrary.MessageEntity;
 namespace MyWebEntityLibrary
 {
-    public class MyWebContext:DbContext
+    public class MyWebContext : DbContext
     {
-        
+
         public DbSet<ArticlesTable> Articles { get; set; }
 
         public DbSet<FilesTable> Files { get; set; }
@@ -34,7 +35,9 @@ namespace MyWebEntityLibrary
         public DbSet<MessagesTable> Messages { get; set; }
 
         public DbSet<MediasTable> Medias { get; set; }
- 
+
+        public DbSet<MailsTable> Mails { get; set; }
+
 
     }
 }

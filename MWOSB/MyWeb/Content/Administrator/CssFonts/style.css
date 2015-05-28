@@ -148,14 +148,25 @@ body{
 .cikisyap a img{
 	padding-right: 5px;
 }
-.kullaniciaylari a{
+.kullaniciayarlari a{
 	color: #49c293;
 	border-top: 4px solid #49c293;
 	float: left;
 	line-height: 67px;
 	font-size: 12px;
 }
-.kullaniciaylari a img{
+.kullaniciayarlari a img{
+	padding-right: 5px;
+}
+
+.mailayarlari a{
+	color: #fff0f5;
+	border-top: 4px solid #fff0f5;
+	float: left;
+	line-height: 67px;
+	font-size: 12px;
+}
+.mailayarlari a img{
 	padding-right: 5px;
 }
 .nav{

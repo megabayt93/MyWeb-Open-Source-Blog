@@ -1,0 +1,49 @@
+﻿@model MyWebEntityLibrary.MailEntity.MailsTable
+@{
+    ViewBag.Title = "Mail Ayarları";
+    Layout = "~/Areas/Administrator/Views/adminLayout.cshtml";
+}
+
+<script>
+    window.onload = function () {
+        $("#mailLi").addClass("active");
+        $("#homeLi").removeClass("active");
+    }
+</script>
+<section class="content">
+   
+    <div class="contentici">
+
+        @using (Ajax.BeginForm("MailAdd", "AdmMail", new AjaxOptions {HttpMethod = "POST", UpdateTargetId = "divError"}, new {@class = "ac-checkbox ac-checkmark yazi_form"}))
+        {<div class="yazibaslik">
+            <b> Mail Ayarı Yorum Bildirimi İçin Gereklidir.</b></div>
+            <div class="yazibaslik">
+                @Html.TextBoxFor(ms => ms.MailSmtp, new {@class = "articleTitle", name = "MailSmtp", placeholder = "SMTP: (örn:smtp.gmail.com)"})
+            </div>
+            <div class="yazibaslik">
+                @Html.TextBoxFor(ma => ma.MailAdress, new {@class = "articleTitle", name = "MailAdress", placeholder = "Mail Adresi"})
+            </div>
+            <div class="yazibaslik">
+                @Html.TextBoxFor(mp => mp.MailPort, new {@class = "articleTitle", name = "MailAdress", placeholder = "SMTP Portu"})
+            </div>
+
+
+
+            <br /><br />
+            <div class="yazibaslik">
+                @Html.Password("MailPassword", "", new {@class = "articleTitle", placeholder = "Mail Şifresi"})
+            </div>
+
+
+            <br /><br />
+            <button>GÜNCELLE</button>
+            <center>
+                <div id="divError"></div>
+            </center>
+            }
+
+
+
+
+        </div>
+</section>
