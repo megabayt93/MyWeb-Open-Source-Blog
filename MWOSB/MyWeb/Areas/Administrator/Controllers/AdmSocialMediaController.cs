@@ -54,7 +54,7 @@ namespace MyWeb.Areas.Administrator.Controllers
             }
 
             _modelSocialMedia.UpdateSocialMedia(stable.Banner, stable.Explanation, stable.Facebook, stable.Instagram,
-                stable.Twitter, stable.Youtube, stable.LinkedIn, stable.Github, filePath);
+                stable.Twitter, stable.Youtube, stable.LinkedIn, stable.Github, filePath,stable.FacebookPage,stable.TwitterPage);
 
             return RedirectToAction("Index", "AdmSocialMedia");
 

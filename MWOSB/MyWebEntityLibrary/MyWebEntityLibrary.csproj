@@ -61,50 +61,6 @@
     <Compile Include="MailEntity\MailsTable.cs" />
     <Compile Include="MediasEntity\MediasTable.cs" />
     <Compile Include="MessageEntity\MessagesTable.cs" />
-    <Compile Include="Migrations\201501232038122_InitialCreate.cs" />
-    <Compile Include="Migrations\201501232038122_InitialCreate.Designer.cs">
-      <DependentUpon>201501232038122_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201502132207276_dbupdate1.cs" />
-    <Compile Include="Migrations\201502132207276_dbupdate1.Designer.cs">
-      <DependentUpon>201502132207276_dbupdate1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201502132209077_dbupdate2.cs" />
-    <Compile Include="Migrations\201502132209077_dbupdate2.Designer.cs">
-      <DependentUpon>201502132209077_dbupdate2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201502132210518_dbupdate3.cs" />
-    <Compile Include="Migrations\201502132210518_dbupdate3.Designer.cs">
-      <DependentUpon>201502132210518_dbupdate3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201502151707557_dbupdate4.cs" />
-    <Compile Include="Migrations\201502151707557_dbupdate4.Designer.cs">
-      <DependentUpon>201502151707557_dbupdate4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201502202136259_updtdtbs5.cs" />
-    <Compile Include="Migrations\201502202136259_updtdtbs5.Designer.cs">
-      <DependentUpon>201502202136259_updtdtbs5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505061236175_updateBlogOne.cs" />
-    <Compile Include="Migrations\201505061236175_updateBlogOne.Designer.cs">
-      <DependentUpon>201505061236175_updateBlogOne.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505162003302_Update-Database.cs" />
-    <Compile Include="Migrations\201505162003302_Update-Database.Designer.cs">
-      <DependentUpon>201505162003302_Update-Database.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505272249476_addMailSettings.cs" />
-    <Compile Include="Migrations\201505272249476_addMailSettings.Designer.cs">
-      <DependentUpon>201505272249476_addMailSettings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505272301269_UpdateMail.cs" />
-    <Compile Include="Migrations\201505272301269_UpdateMail.Designer.cs">
-      <DependentUpon>201505272301269_UpdateMail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505272331440_updateMailPort.cs" />
-    <Compile Include="Migrations\201505272331440_updateMailPort.Designer.cs">
-      <DependentUpon>201505272331440_updateMailPort.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SocialMediasEntity\SocialMediasTable.cs" />
     <Compile Include="WhatIDoEntity\WhatIDoTable.cs" />
@@ -114,41 +70,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201501232038122_InitialCreate.resx">
-      <DependentUpon>201501232038122_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502132207276_dbupdate1.resx">
-      <DependentUpon>201502132207276_dbupdate1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502132209077_dbupdate2.resx">
-      <DependentUpon>201502132209077_dbupdate2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502132210518_dbupdate3.resx">
-      <DependentUpon>201502132210518_dbupdate3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502151707557_dbupdate4.resx">
-      <DependentUpon>201502151707557_dbupdate4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502202136259_updtdtbs5.resx">
-      <DependentUpon>201502202136259_updtdtbs5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505061236175_updateBlogOne.resx">
-      <DependentUpon>201505061236175_updateBlogOne.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505162003302_Update-Database.resx">
-      <DependentUpon>201505162003302_Update-Database.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505272249476_addMailSettings.resx">
-      <DependentUpon>201505272249476_addMailSettings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505272301269_UpdateMail.resx">
-      <DependentUpon>201505272301269_UpdateMail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505272331440_updateMailPort.resx">
-      <DependentUpon>201505272331440_updateMailPort.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

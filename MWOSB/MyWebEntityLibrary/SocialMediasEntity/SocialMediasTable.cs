@@ -31,5 +31,9 @@ namespace MyWebEntityLibrary.SocialMediasEntity
 
         public string Image { get; set; }
 
+        public string FacebookPage { get; set; }
+
+        public string TwitterPage { get; set; }
+
     }
 }
