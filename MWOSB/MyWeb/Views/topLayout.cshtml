@@ -1,8 +1,8 @@
 ﻿@using Microsoft.Ajax.Utilities
 @using MyWeb.Areas.Administrator.Models
+@using MyWebEntityLibrary.SeoContent
 @using MyWebEntityLibrary.SocialMediasEntity
 <!DOCTYPE html>
-
 
 <script src="~/Content/js/jquery-1.8.2.min.js"></script>
 <script src="~/Content/Script/MyScript.js" type="text/javascript"></script>
@@ -14,32 +14,42 @@
 <script src="~/Content/js/jquery.validate.min.js"></script>
 <html>
 
-
 <head>
     <meta name="viewport" content="width=device-width" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link rel="icon"
-          type="image/png"
-          href="~/Content/Images/csharp.png" />
-    <meta name="description" content="Software Developer Fatih YAZICI" />
-    <meta name="keywords" content="software developer,fatih yazıcı,mvc geliştirici,net geliştirici,yazıcı fatih" />
-    <meta name="author" content="Fatih YAZICI" />
+          type="image/ico"
+          href="/Content/Images/yatech.ico" />
+    @{
+        MyWebEntityLibrary.MyWebContext seoEntity = new MyWebEntityLibrary.MyWebContext();
+        var comingSeoInformation = new SeoContentsTable();
+        try
+        {
+            comingSeoInformation = (from p in seoEntity.SeoContentsTables select p).First(id => id.SeoId > 0);
+            <meta name="description" content="@comingSeoInformation.Description" />
+            <meta name="keywords" content="@comingSeoInformation.Keywords" />
+            <meta name="author" content="@comingSeoInformation.Author" />
+        }
+        catch (Exception)
+        {
+            <meta name="description" content="Software Developer Fatih YAZICI" />
+            <meta name="keywords" content="software developer,fatih yazıcı,mvc geliştirici,net geliştirici,yazıcı fatih" />
+            <meta name="author" content="Fatih YAZICI" />
+
+        }
+    }
 
 
-   
+
     <link href='http://fonts.googleapis.com/css?family=Bree+Serif%7COpen+Sans:400,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link href="~/Content/css/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="~/Content/css/font-awesome.min.css" type="text/css" />
 
 
-
-
 </head>
-
 <body>
-
     <div class="container">
         <nav class="navbar navbar-inverse" role="navigation">
             <div class="container-fluid">
@@ -50,14 +60,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
                     @{
 
-                        MyWebEntityLibrary.MyWebContext entity = new MyWebEntityLibrary.MyWebContext();
-                        var comingInformation = new SocialMediasTable();
+                        MyWebEntityLibrary.MyWebContext socialEntity = new MyWebEntityLibrary.MyWebContext();
+                        var comingSocialInformation = new SocialMediasTable();
                         try
                         {
-                            comingInformation = (from p in entity.SocialMedias select p).First(id => id.SocialMediasId > 0);
+                            comingSocialInformation = (from p in socialEntity.SocialMedias select p).First(id => id.SocialMediasId > 0);
                         }
                         catch (Exception)
                         {
@@ -67,8 +76,7 @@
                         }
 
                     }
-
-                    <a class="navbar-brand" href="~/anasayfa"><i class="fa fa-user"></i> @comingInformation.Banner</a>
+                    <a class="navbar-brand" href="~/anasayfa"><i class="fa fa-user"></i> @comingSocialInformation.Banner</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse" onclick="myfunction">
                     <ul class="nav navbar-nav navbar-right">
@@ -79,43 +87,36 @@
                         <li id="contactli">@Html.ActionLink("İletişim", "Index", "Contact")</li>
                     </ul>
 
-
                 </div>
             </div>
         </nav>
-
         <div class="row-fluid">
             <div class="renk kutu tanit">
                 <div class="col-lg-1 col-md-2 col-sm-2 col-xs-4">
-                    <img src="~/Content/Images/@comingInformation.Image" class="img-responsive img-rounded" alt="@comingInformation.Banner" />
+                    <img src="~/Content/Images/@comingSocialInformation.Image" class="img-responsive img-rounded" alt="@comingSocialInformation.Banner" />
                 </div>
                 <div class="col-lg-5 col-md-6 col-sm-6 col-xs-8">
-                    <h1 style="margin:0;line-height:1.2;">@comingInformation.Banner</h1>
-                    <p>@comingInformation.Explanation</p>
+                    <h1 style="margin:0;line-height:1.2;">@comingSocialInformation.Banner</h1>
+                    <p>@comingSocialInformation.Explanation</p>
                 </div>
                 <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12 sosyol">
                     <ul class="sosyalJumb pull-right">
-                        <li><a href="@comingInformation.Facebook" target="_blank" class="fa fa-facebook"></a></li>
-                        <li><a href="@comingInformation.Twitter" target="_blank" class="fa fa-twitter"></a></li>
-                        <li><a href="@comingInformation.Youtube" target="_blank" class="fa fa-youtube"></a></li>
-                        <li><a href="@comingInformation.Instagram" target="_blank" class="fa fa-instagram"></a></li>
-                        <li><a href="@comingInformation.LinkedIn" target="_blank" class="fa fa-linkedin"></a></li>
-                        <li><a href="@comingInformation.Github" target="_blank" class="fa fa-github"></a></li>
-
+                        <li><a href="@comingSocialInformation.Facebook" target="_blank" class="fa fa-facebook"></a></li>
+                        <li><a href="@comingSocialInformation.Twitter" target="_blank" class="fa fa-twitter"></a></li>
+                        <li><a href="@comingSocialInformation.Youtube" target="_blank" class="fa fa-youtube"></a></li>
+                        <li><a href="@comingSocialInformation.Instagram" target="_blank" class="fa fa-instagram"></a></li>
+                        <li><a href="@comingSocialInformation.LinkedIn" target="_blank" class="fa fa-linkedin"></a></li>
+                        <li><a href="@comingSocialInformation.Github" target="_blank" class="fa fa-github"></a></li>
                     </ul>
                 </div>
                 <div class="clearfix"></div>
             </div>
             <div class="clearfix"></div>
         </div>
-
         <div class="row">
-
             @RenderBody()
 
-
             <div class="col-md-4">
-
                 <div class="renk kutu ara">
                     @using (Html.BeginForm("Index", "Search"))
                     {
@@ -123,8 +124,6 @@
                         <button class="araButon" name="search" id="searchbutton"><i class="fa fa-search"></i></button>
                         <!--<input type="submit" class="araButon" name="search" id="searchbutton" value="Ara" />-->
                     }
-
-
 
 
                 </div>
@@ -139,13 +138,12 @@
                         <li><a href="~/etiketler/oop">OOP</a></li>
                     </ul>
                 </div>
-
-                @Html.Raw(comingInformation.FacebookPage)
+                @Html.Raw(comingSocialInformation.FacebookPage)
                 <br />
                 <br />
                 <div class="twitter-time">
                     <div id="fb-root"></div>
-                    @Html.Raw(comingInformation.TwitterPage)
+                    @Html.Raw(comingSocialInformation.TwitterPage)
                     <style type="text/css">
                         iframe[id^='twitter-widget-'] {
                             width: 100% !important;
@@ -154,10 +152,8 @@
                     </style>
                     <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
                 </div>
-
                 <br />
                 <script language="JavaScript" type="text/javascript" src="http://www.erkaseriilan.com.tr/sayac.php?url=fatihyazici.kim"></script>
-
             </div>
         </div>
     </div>
@@ -168,6 +164,5 @@
             </div>
         </div>
     </footer>
-
 </body>
 </html>
