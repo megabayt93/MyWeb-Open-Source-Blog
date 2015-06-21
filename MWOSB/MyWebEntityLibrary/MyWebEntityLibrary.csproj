@@ -62,6 +62,7 @@
     <Compile Include="MediasEntity\MediasTable.cs" />
     <Compile Include="MessageEntity\MessagesTable.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="SeoContent\SeoContentsTable.cs" />
     <Compile Include="SocialMediasEntity\SocialMediasTable.cs" />
     <Compile Include="WhatIDoEntity\WhatIDoTable.cs" />
     <Compile Include="MyWebContext.cs" />

@@ -1,0 +1,46 @@
+﻿@model MyWebEntityLibrary.SeoContent.SeoContentsTable
+@{
+    ViewBag.Title = "Seo Ayarları";
+    Layout = "~/Areas/Administrator/Views/adminLayout.cshtml";
+}
+
+<script>
+    window.onload = function () {
+        $("#seoLi").addClass("active");
+        $("#homeLi").removeClass("active");
+    }
+</script>
+<section class="content">
+
+    <div class="contentici">
+
+        @using (Ajax.BeginForm("SeoAdd", "AdmSeoSettings", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divError" }, new { @class = "ac-checkbox ac-checkmark yazi_form" }))
+        {<div class="yazibaslik">
+            <b>Seo için gerekli Description,Keyword,Author bilgilerini aşağıdaki ilgili yerlere yazınız.</b>
+        </div>
+            <div class="yazibaslik">
+                @Html.TextBoxFor(sd => sd.Description, new { @class = "articleTitle", name = "Description", placeholder = "Description" })
+            </div>
+            <div class="yazibaslik">
+                @Html.TextBoxFor(sk => sk.Keywords, new { @class = "articleTitle", name = "Keywords", placeholder = "Keywords" })
+            </div>
+            <div class="yazibaslik">
+                @Html.TextBoxFor(sa => sa.Author, new { @class = "articleTitle", name = "Author", placeholder = "Author" })
+            </div>
+
+
+
+        
+
+            <br /><br />
+            <button>GÜNCELLE</button>
+            <center>
+                <div id="divError"></div>
+            </center>
+        }
+
+
+
+
+    </div>
+</section>

@@ -13,6 +13,8 @@ using MyWebEntityLibrary.ContactsEntity;
 using MyWebEntityLibrary.MailEntity;
 using MyWebEntityLibrary.MediasEntity;
 using MyWebEntityLibrary.MessageEntity;
+using MyWebEntityLibrary.SeoContent;
+
 namespace MyWebEntityLibrary
 {
     public class MyWebContext : DbContext
@@ -37,6 +39,8 @@ namespace MyWebEntityLibrary
         public DbSet<MediasTable> Medias { get; set; }
 
         public DbSet<MailsTable> Mails { get; set; }
+
+        public DbSet<SeoContentsTable> SeoContentsTables { get; set; } 
 
 
     }

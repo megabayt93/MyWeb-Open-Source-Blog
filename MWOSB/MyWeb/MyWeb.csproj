@@ -156,6 +156,7 @@
     <Compile Include="Areas\Administrator\Controllers\AdmInformationController.cs" />
     <Compile Include="Areas\Administrator\Controllers\AdmMailController.cs" />
     <Compile Include="Areas\Administrator\Controllers\AdmMediaController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\AdmSeoSettingsController.cs" />
     <Compile Include="Areas\Administrator\Controllers\AdmSocialMediaController.cs" />
     <Compile Include="Areas\Administrator\Controllers\AdmWhatIDoController.cs" />
     <Compile Include="Areas\Administrator\Controllers\LoginController.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="Areas\Administrator\Models\ModelWhatIDo.cs" />
     <Compile Include="Areas\Administrator\Models\myAuthorize.cs" />
     <Compile Include="Areas\Administrator\Models\Seo.cs" />
+    <Compile Include="Areas\Administrator\Models\ModelSeo.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\CategoriController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -815,6 +817,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Administrator\Views\AdmMail\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administrator\Views\AdmSeoSettings\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

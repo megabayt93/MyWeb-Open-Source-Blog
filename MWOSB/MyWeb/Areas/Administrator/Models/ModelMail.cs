@@ -17,19 +17,19 @@ namespace MyWeb.Areas.Administrator.Models
         public ModelMail()
         {
             _mailContext = new MyWebContext();
-            ;
+            
             _mailsTable = new MailsTable();
         }
 
         public object ComingMailInfo()
         {
-            var mailControl = _mailContext.Mails.OrderBy(m => m.MailId > 0).FirstOrDefault();
+            var mailControl = _mailContext.Mails.FirstOrDefault();
             return mailControl;
         }
 
         public string MailAdd(string smtp, string mail, string password,int port)
         {
-            var mailControl = _mailContext.Mails.OrderBy(m => m.MailId > 0).FirstOrDefault();
+            var mailControl = _mailContext.Mails.FirstOrDefault();
             if (mailControl != null)
             {
                 mailControl.MailSmtp = smtp;
