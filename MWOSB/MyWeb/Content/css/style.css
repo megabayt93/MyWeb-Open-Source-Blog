@@ -26,7 +26,9 @@ body {
 ol, ul {
     list-style: none;
 }
-
+.fb-page,.fb-page iframe, .fb-page span{
+width:100% !important;
+}
 blockquote, q {
     quotes: none;
 }
