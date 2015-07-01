@@ -32,6 +32,7 @@ namespace MyWebEntityLibrary
                         PublishId = 1
                     }
                     );
+                ct.SaveChanges();
             }
 
 
