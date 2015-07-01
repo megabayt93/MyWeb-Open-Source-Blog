@@ -9,7 +9,7 @@ namespace MyWebEntityLibrary.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "MyWebEntityLibrary.MyWebContext";
         }
 
