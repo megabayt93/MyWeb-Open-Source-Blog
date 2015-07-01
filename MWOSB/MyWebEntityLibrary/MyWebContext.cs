@@ -20,6 +20,11 @@ namespace MyWebEntityLibrary
     public class MyWebContext : DbContext
     {
 
+        public MyWebContext()
+        {
+            Database.SetInitializer<MyWebContext>(new MyWebInitializer());
+        }
+
         public DbSet<ArticlesTable> Articles { get; set; }
 
         public DbSet<FilesTable> Files { get; set; }
