@@ -15,7 +15,20 @@
 
 
         <div class="girdiIcerik">
-            <text style="font-size:25px;">@Html.Raw(Model.ContactInformation)</text><br />
+            <text style="font-size:25px;">
+                @try
+                {
+
+                    @Html.Raw(Model.ContactInformation);
+
+                }
+
+                catch (Exception)
+                {
+
+                    Html.Raw("BOŞ");
+                }
+            </text>
 
             @using (Ajax.BeginForm("SendMessage", "Contact", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "sendDiv" }))
             {
