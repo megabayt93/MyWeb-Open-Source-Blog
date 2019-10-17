@@ -33,9 +33,9 @@ namespace MyWeb.Areas.Administrator.Models
                 _socialMediasTable.Image = "profil.jpg";
                 _socialMediasTable.Banner = "Fatih YAZICI";
                 _socialMediasTable.Explanation = ".Net Dünyasında Kaybolmuş Microsoft Sever(MEGABAYT)";
-                _socialMediasTable.Facebook = "https://www.facebook.com/o.bir.coder";
-                _socialMediasTable.Instagram = "http://instagram.com/obircoder";
-                _socialMediasTable.Twitter = "https://twitter.com/TeknodeliFatih";
+                _socialMediasTable.Facebook = "https://www.facebook.com/fyazici34";
+                _socialMediasTable.Instagram = "http://instagram.com/fyazici34";
+                _socialMediasTable.Twitter = "https://twitter.com/fyazici34";
                 _socialMediasTable.Youtube = "https://www.youtube.com/channel/UCG_yhERI1Q8RD_aJazfcfrA";
                 _socialMediasTable.LinkedIn =
                     "https://www.linkedin.com/profile/preview?locale=tr_TR&trk=prof-0-sb-preview-primary-button";
